@@ -1,0 +1,93 @@
+name: Generate Site with Claude Code
+
+on:
+  push:
+    paths:
+      - 'prompts/**'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Extract session info
+        id: session
+        run: |
+          # 最新のプロンプトファイルを取得
+          PROMPT_FILE=$(ls -t prompts/*.md | head -1)
+          SESSION_ID=$(basename "$PROMPT_FILE" .md)
+          echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
+          echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
+
+      - name: Generate site with Claude API
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
+          PROMPT_FILE="${{ steps.session.outputs.prompt_file }}"
+          PROMPT_CONTENT=$(cat "$PROMPT_FILE")
+
+          # サイト出力ディレクトリを作成
+          mkdir -p "sites/$SESSION_ID"
+
+          # Claude APIでサイト生成
+          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
+            -H "Content-Type: application/json" \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -d "{
+              \"model\": \"claude-sonnet-4-20250514\",
+              \"max_tokens\": 8096,
+              \"system\": \"あなたはWebサイトジェネレーターです。プロンプトに基づいて、完全なHTMLファイルを生成してください。レスポンシブ対応、モダンなデザインで、CSSはインラインまたはstyleタグで含めてください。JavaScriptも必要に応じて含めてください。HTMLコードのみを出力し、説明文は不要です。\",
+              \"messages\": [{\"role\": \"user\", \"content\": \"以下のプロンプトに基づいてWebサイトを生成してください：\n\n$PROMPT_CONTENT\"}]
+            }")
+
+          # レスポンスからHTMLを抽出
+          echo "$RESPONSE" | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          text = data['content'][0]['text']
+          # HTMLタグを抽出（コードブロックがある場合は除去）
+          if '\`\`\`html' in text:
+              text = text.split('\`\`\`html')[1].split('\`\`\`')[0]
+          elif '\`\`\`' in text:
+              text = text.split('\`\`\`')[1].split('\`\`\`')[0]
+          print(text.strip())
+          " > "sites/$SESSION_ID/index.html"
+
+          echo "サイト生成完了: sites/$SESSION_ID/index.html"
+
+      - name: Commit generated site
+        run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "sites/$SESSION_ID/"
+          git commit -m "Generated site for session $SESSION_ID"
+          git push
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
+          npm install -g wrangler
+          # 案件ごとにPagesプロジェクトにデプロイ
+          wrangler pages deploy "sites/$SESSION_ID" \
+            --project-name="draft-site-$SESSION_ID" \
+            --branch=main \
+            2>&1 | tee deploy_output.txt
+
+          # デプロイURLを取得
+          DRAFT_URL=$(grep -oP 'https://[^\s]+\.pages\.dev' deploy_output.txt | head -1)
+          echo "draft_url=$DRAFT_URL" >> $GITHUB_OUTPUT
+          echo "デプロイ完了: $DRAFT_URL"
