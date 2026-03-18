@@ -10,23 +10,25 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
+      issues: write
     env:
       API_BASE: https://hearing-api.hab-tech.net
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
 
       - name: Extract session info
         id: session
         run: |
           PROMPT_FILE=$(ls -t prompts/*.md | head -1)
           SESSION_ID=$(basename "$PROMPT_FILE" .md)
+          PROMPT_CONTENT=$(cat "$PROMPT_FILE")
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
           echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
+          # プロンプト内容を環境ファイルに保存（複数行対応）
+          echo "prompt_content<<PROMPT_DELIM" >> $GITHUB_OUTPUT
+          echo "$PROMPT_CONTENT" >> $GITHUB_OUTPUT
+          echo "PROMPT_DELIM" >> $GITHUB_OUTPUT
 
       - name: "Notify: site generation started"
         env:
@@ -38,56 +40,44 @@ jobs:
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
             -d "{\"sessionId\": \"$SESSION_ID\", \"status\": \"generating_site\"}" || true
 
-      - name: Generate site with Claude API
+      - name: Generate site with Claude Code
         id: generate
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
-        run: |
-          SESSION_ID="${{ steps.session.outputs.session_id }}"
-          PROMPT_FILE="${{ steps.session.outputs.prompt_file }}"
-          PROMPT_CONTENT=$(cat "$PROMPT_FILE")
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.CLAUDE_API_KEY }}
+          prompt: |
+            以下のプロンプトに基づいて、Webサイトを生成してください。
 
-          mkdir -p "sites/$SESSION_ID"
+            【出力先】
+            sites/${{ steps.session.outputs.session_id }}/ ディレクトリに出力してください。
 
-          PAYLOAD=$(jq -n \
-            --arg prompt "$PROMPT_CONTENT" \
-            '{
-              model: "claude-sonnet-4-20250514",
-              max_tokens: 8096,
-              system: "あなたはWebサイトジェネレーターです。プロンプトに基づいて、完全なHTMLファイルを生成してください。レスポンシブ対応、モダンなデザインで、CSSはインラインまたはstyleタグで含めてください。JavaScriptも必要に応じて含めてください。HTMLコードのみを出力し、説明文は不要です。",
-              messages: [{role: "user", content: ("以下のプロンプトに基づいてWebサイトを生成してください：\n\n" + $prompt)}]
-            }')
+            【要件】
+            - index.html を必ず作成すること
+            - CSS は style.css として分離すること
+            - 必要に応じて script.js も作成すること
+            - レスポンシブ対応（モバイル・タブレット・PC）
+            - モダンで洗練されたデザイン
+            - 日本語フォント対応（Google Fonts の Noto Sans JP 推奨）
+            - OGP メタタグ、favicon 設定も含めること
+            - 画像は適切なプレースホルダー（via https://placehold.co）を使用
 
-          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
-            -H "Content-Type: application/json" \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -d "$PAYLOAD")
-
-          ERROR_TYPE=$(echo "$RESPONSE" | jq -r '.type // empty')
-          if [ "$ERROR_TYPE" = "error" ]; then
-            ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message')
-            echo "::error::Claude API error: $ERROR_MSG"
-            exit 1
-          fi
-
-          HTML_TEXT=$(echo "$RESPONSE" | jq -r '.content[0].text')
-          echo "$HTML_TEXT" | sed -n '/^```html/,/^```/{/^```/d;p}' > "sites/$SESSION_ID/index.html"
-
-          if [ ! -s "sites/$SESSION_ID/index.html" ]; then
-            echo "$HTML_TEXT" > "sites/$SESSION_ID/index.html"
-          fi
-
-          echo "Generated: sites/$SESSION_ID/index.html"
+            【プロンプト内容】
+            ${{ steps.session.outputs.prompt_content }}
+          claude_args: "--max-turns 15 --model claude-sonnet-4-20250514"
 
       - name: Commit generated site
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "sites/$SESSION_ID/"
-          git commit -m "Generated site for session $SESSION_ID"
-          git push
+          if [ -d "sites/$SESSION_ID" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add "sites/$SESSION_ID/"
+            git commit -m "Generated site for session $SESSION_ID"
+            git push
+          else
+            echo "::error::sites/$SESSION_ID directory not found"
+            exit 1
+          fi
 
       - name: Deploy to Cloudflare Pages
         id: deploy
