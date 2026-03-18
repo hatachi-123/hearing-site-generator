@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
-      issues: write
     env:
       API_BASE: https://hearing-api.hab-tech.net
     steps:
@@ -25,7 +23,6 @@ jobs:
           PROMPT_CONTENT=$(cat "$PROMPT_FILE")
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
           echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
-          # プロンプト内容を環境ファイルに保存（複数行対応）
           echo "prompt_content<<PROMPT_DELIM" >> $GITHUB_OUTPUT
           echo "$PROMPT_CONTENT" >> $GITHUB_OUTPUT
           echo "PROMPT_DELIM" >> $GITHUB_OUTPUT
@@ -40,44 +37,59 @@ jobs:
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
             -d "{\"sessionId\": \"$SESSION_ID\", \"status\": \"generating_site\"}" || true
 
-      - name: Generate site with Claude Code
-        id: generate
-        uses: anthropics/claude-code-action@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          anthropic_api_key: ${{ secrets.CLAUDE_API_KEY }}
-          prompt: |
-            以下のプロンプトに基づいて、Webサイトを生成してください。
+          node-version: '22'
 
-            【出力先】
-            sites/${{ steps.session.outputs.session_id }}/ ディレクトリに出力してください。
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
 
-            【要件】
-            - index.html を必ず作成すること
-            - CSS は style.css として分離すること
-            - 必要に応じて script.js も作成すること
-            - レスポンシブ対応（モバイル・タブレット・PC）
-            - モダンで洗練されたデザイン
-            - 日本語フォント対応（Google Fonts の Noto Sans JP 推奨）
-            - OGP メタタグ、favicon 設定も含めること
-            - 画像は適切なプレースホルダー（via https://placehold.co）を使用
+      - name: Generate site with Claude Code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+        run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
+          PROMPT_CONTENT="${{ steps.session.outputs.prompt_content }}"
 
-            【プロンプト内容】
-            ${{ steps.session.outputs.prompt_content }}
-          claude_args: "--max-turns 15 --model claude-sonnet-4-20250514"
+          claude -p "
+          以下のプロンプトに基づいて、Webサイトを生成してください。
+
+          【出力先】
+          sites/$SESSION_ID/ ディレクトリに出力してください。
+
+          【要件】
+          - index.html を必ず作成すること
+          - CSS は style.css として分離すること
+          - 必要に応じて script.js も作成すること
+          - レスポンシブ対応（モバイル・タブレット・PC）
+          - モダンで洗練されたデザイン
+          - 日本語フォント対応（Google Fonts の Noto Sans JP 推奨）
+          - OGP メタタグ、favicon 設定も含めること
+          - 画像は適切なプレースホルダー（via https://placehold.co）を使用
+
+          【プロンプト内容】
+          $PROMPT_CONTENT
+          " --max-turns 15 --model claude-sonnet-4-20250514
+
+      - name: Verify generated site
+        run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
+          if [ ! -f "sites/$SESSION_ID/index.html" ]; then
+            echo "::error::sites/$SESSION_ID/index.html not found"
+            exit 1
+          fi
+          echo "Site generated successfully"
+          ls -la "sites/$SESSION_ID/"
 
       - name: Commit generated site
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
-          if [ -d "sites/$SESSION_ID" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add "sites/$SESSION_ID/"
-            git commit -m "Generated site for session $SESSION_ID"
-            git push
-          else
-            echo "::error::sites/$SESSION_ID directory not found"
-            exit 1
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "sites/$SESSION_ID/"
+          git commit -m "Generated site for session $SESSION_ID"
+          git push
 
       - name: Deploy to Cloudflare Pages
         id: deploy
@@ -86,8 +98,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
-          npm install -g wrangler
-          wrangler pages deploy "sites/$SESSION_ID" \
+          npx wrangler pages deploy "sites/$SESSION_ID" \
             --project-name="draft-site-$SESSION_ID" \
             --branch=main \
             2>&1 | tee deploy_output.txt
