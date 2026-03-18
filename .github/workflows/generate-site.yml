@@ -70,13 +70,14 @@ jobs:
 
           【プロンプト内容】
           $PROMPT_CONTENT
-          " --max-turns 15 --model claude-sonnet-4-20250514
+          " --max-turns 15 --model claude-sonnet-4-20250514 --dangerously-skip-permissions
 
       - name: Verify generated site
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
           if [ ! -f "sites/$SESSION_ID/index.html" ]; then
             echo "::error::sites/$SESSION_ID/index.html not found"
+            ls -laR sites/ || echo "sites/ directory not found"
             exit 1
           fi
           echo "Site generated successfully"
