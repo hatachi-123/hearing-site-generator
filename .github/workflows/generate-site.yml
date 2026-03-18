@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      API_BASE: https://hearing-api.hab-tech.net
     steps:
       - uses: actions/checkout@v4
 
@@ -26,7 +28,17 @@ jobs:
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
           echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
 
+      - name: Notify: サイト生成開始
+        env:
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          curl -s -X POST "$API_BASE/api/callback/status" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ADMIN_PASSWORD" \
+            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"generating_site\"}" || true
+
       - name: Generate site with Claude API
+        id: generate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
@@ -84,6 +96,7 @@ jobs:
           git push
 
       - name: Deploy to Cloudflare Pages
+        id: deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -98,3 +111,24 @@ jobs:
           DRAFT_URL=$(grep -oP 'https://[^\s]+\.pages\.dev' deploy_output.txt | head -1)
           echo "draft_url=$DRAFT_URL" >> $GITHUB_OUTPUT
           echo "デプロイ完了: $DRAFT_URL"
+
+      - name: Notify: デプロイ完了
+        if: success()
+        env:
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          DRAFT_URL="${{ steps.deploy.outputs.draft_url }}"
+          curl -s -X POST "$API_BASE/api/callback/status" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ADMIN_PASSWORD" \
+            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"deployed\", \"draftUrl\": \"$DRAFT_URL\"}"
+
+      - name: Notify: 失敗
+        if: failure()
+        env:
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+        run: |
+          curl -s -X POST "$API_BASE/api/callback/status" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $ADMIN_PASSWORD" \
+            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"failed\"}" || true
