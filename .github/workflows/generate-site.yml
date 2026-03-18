@@ -26,6 +26,9 @@ jobs:
           echo "prompt_content<<PROMPT_DELIM" >> $GITHUB_OUTPUT
           echo "$PROMPT_CONTENT" >> $GITHUB_OUTPUT
           echo "PROMPT_DELIM" >> $GITHUB_OUTPUT
+          # プロジェクト名（Cloudflare Pages用、63文字以内）
+          SHORT_ID=$(echo "$SESSION_ID" | cut -c1-8)
+          echo "project_name=draft-${SHORT_ID}" >> $GITHUB_OUTPUT
 
       - name: "Notify: site generation started"
         env:
@@ -99,8 +102,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
+          PROJECT_NAME="${{ steps.session.outputs.project_name }}"
+
+          # プロジェクトが存在しなければ作成
+          npx wrangler pages project create "$PROJECT_NAME" --production-branch=main 2>/dev/null || echo "Project already exists or creation skipped"
+
+          # デプロイ
           npx wrangler pages deploy "sites/$SESSION_ID" \
-            --project-name="draft-site-$SESSION_ID" \
+            --project-name="$PROJECT_NAME" \
             --branch=main \
             2>&1 | tee deploy_output.txt
 
