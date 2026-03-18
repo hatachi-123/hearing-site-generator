@@ -1,63 +1,58 @@
-// DOM Content Loaded Event
+// DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initNavigation();
+    // Mobile Menu Toggle
+    initMobileMenu();
+
+    // FAQ Toggle
     initFAQ();
+
+    // Back to Top Button
+    initBackToTop();
+
+    // Contact Form
     initContactForm();
-    initScrollEffects();
+
+    // Smooth Scroll for Navigation Links
     initSmoothScroll();
+
+    // Header Scroll Effect
+    initHeaderScroll();
+
+    // Animations on Scroll
+    initScrollAnimations();
 });
 
-// Navigation functionality
-function initNavigation() {
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-link');
+// Mobile Menu Functionality
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('nav');
 
-    // Mobile menu toggle
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
-
-            // Animate hamburger menu
-            const spans = navToggle.querySelectorAll('span');
-            spans.forEach(span => span.classList.toggle('active'));
+    if (mobileMenuBtn && nav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            nav.classList.toggle('nav-open');
+            mobileMenuBtn.classList.toggle('active');
         });
 
-        // Close menu when clicking on links
+        // Close mobile menu when clicking on a link
+        const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                navToggle.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans.forEach(span => span.classList.remove('active'));
+                nav.classList.remove('nav-open');
+                mobileMenuBtn.classList.remove('active');
             });
         });
-    }
 
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener('scroll', function() {
-        const currentScrollY = window.scrollY;
-
-        if (header) {
-            if (currentScrollY > 100) {
-                header.style.background = 'rgba(254, 252, 249, 0.98)';
-                header.style.boxShadow = '0 2px 10px rgba(93, 78, 55, 0.1)';
-            } else {
-                header.style.background = 'rgba(254, 252, 249, 0.95)';
-                header.style.boxShadow = 'none';
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!nav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                nav.classList.remove('nav-open');
+                mobileMenuBtn.classList.remove('active');
             }
-        }
-
-        lastScrollY = currentScrollY;
-    });
+        });
+    }
 }
 
-// FAQ Accordion functionality
+// FAQ Toggle Functionality
 function initFAQ() {
     const faqItems = document.querySelectorAll('.faq-item');
 
@@ -68,44 +63,60 @@ function initFAQ() {
 
         if (question && answer && toggle) {
             question.addEventListener('click', function() {
-                const isActive = answer.classList.contains('active');
+                const isActive = item.classList.contains('active');
 
                 // Close all other FAQ items
                 faqItems.forEach(otherItem => {
-                    const otherAnswer = otherItem.querySelector('.faq-answer');
-                    const otherToggle = otherItem.querySelector('.faq-toggle');
-                    if (otherAnswer && otherToggle && otherItem !== item) {
-                        otherAnswer.classList.remove('active');
-                        otherToggle.textContent = '+';
-                        otherToggle.style.transform = 'rotate(0deg)';
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
                     }
                 });
 
-                // Toggle current FAQ item
+                // Toggle current item
                 if (isActive) {
-                    answer.classList.remove('active');
-                    toggle.textContent = '+';
-                    toggle.style.transform = 'rotate(0deg)';
+                    item.classList.remove('active');
                 } else {
-                    answer.classList.add('active');
-                    toggle.textContent = '−';
-                    toggle.style.transform = 'rotate(180deg)';
+                    item.classList.add('active');
                 }
             });
         }
     });
 }
 
-// Contact Form functionality
-function initContactForm() {
-    const form = document.getElementById('contactForm');
+// Back to Top Button
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('back-to-top');
 
-    if (form) {
-        form.addEventListener('submit', function(e) {
+    if (backToTopBtn) {
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.display = 'flex';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        // Scroll to top functionality
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+// Contact Form Handling
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             // Get form data
-            const formData = new FormData(form);
+            const formData = new FormData(contactForm);
             const data = {
                 name: formData.get('name'),
                 email: formData.get('email'),
@@ -115,148 +126,94 @@ function initContactForm() {
                 privacy: formData.get('privacy')
             };
 
-            // Basic validation
-            if (!validateForm(data)) {
+            // Validate required fields
+            if (!data.name || !data.email || !data.message || !data.privacy) {
+                alert('必須項目をすべて入力してください。');
                 return;
             }
 
-            // Show loading state
-            const submitButton = form.querySelector('.submit-button');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = '送信中...';
-            submitButton.disabled = true;
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('有効なメールアドレスを入力してください。');
+                return;
+            }
 
             // Simulate form submission (replace with actual submission logic)
-            setTimeout(() => {
-                showSuccessMessage();
-                form.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            }, 1500);
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送信中...';
+
+            // Simulate API call
+            setTimeout(function() {
+                alert('お問い合わせを受け付けました。ありがとうございます。');
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> 送信する';
+            }, 2000);
+        });
+
+        // Real-time validation feedback
+        const inputs = contactForm.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateField(input);
+            });
+
+            input.addEventListener('input', function() {
+                if (input.classList.contains('error')) {
+                    validateField(input);
+                }
+            });
         });
     }
 }
 
-// Form validation
-function validateForm(data) {
-    const errors = [];
+// Field Validation
+function validateField(field) {
+    const value = field.value.trim();
+    let isValid = true;
 
-    // Required fields validation
-    if (!data.name || data.name.trim().length < 2) {
-        errors.push('お名前を正しく入力してください（2文字以上）');
+    // Remove previous error styling
+    field.classList.remove('error');
+
+    // Check required fields
+    if (field.hasAttribute('required') && !value) {
+        isValid = false;
     }
 
-    if (!data.email || !isValidEmail(data.email)) {
-        errors.push('有効なメールアドレスを入力してください');
+    // Email validation
+    if (field.type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            isValid = false;
+        }
     }
 
-    if (!data.message || data.message.trim().length < 10) {
-        errors.push('お問い合わせ内容を詳しく入力してください（10文字以上）');
+    // Add error styling if invalid
+    if (!isValid) {
+        field.classList.add('error');
     }
 
-    if (!data.privacy) {
-        errors.push('プライバシーポリシーに同意してください');
-    }
-
-    // Show errors if any
-    if (errors.length > 0) {
-        showErrorMessage(errors.join('\n'));
-        return false;
-    }
-
-    return true;
+    return isValid;
 }
 
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-// Show success message
-function showSuccessMessage() {
-    const message = document.createElement('div');
-    message.className = 'alert alert-success';
-    message.innerHTML = `
-        <div style="position: fixed; top: 20px; right: 20px; background: #C8D5A1; color: white; padding: 1rem 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 9999;">
-            <strong>送信完了</strong><br>
-            お問い合わせありがとうございます。担当者より24時間以内にご連絡いたします。
-        </div>
-    `;
-
-    document.body.appendChild(message);
-
-    setTimeout(() => {
-        message.remove();
-    }, 5000);
-}
-
-// Show error message
-function showErrorMessage(errors) {
-    const message = document.createElement('div');
-    message.className = 'alert alert-error';
-    message.innerHTML = `
-        <div style="position: fixed; top: 20px; right: 20px; background: #e74c3c; color: white; padding: 1rem 2rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 9999; white-space: pre-line;">
-            <strong>入力エラー</strong><br>
-            ${errors}
-        </div>
-    `;
-
-    document.body.appendChild(message);
-
-    setTimeout(() => {
-        message.remove();
-    }, 5000);
-}
-
-// Scroll effects and animations
-function initScrollEffects() {
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-on-scroll');
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll(`
-        .section-title,
-        .problem-item,
-        .service-item,
-        .reason-item,
-        .pricing-item,
-        .case-item,
-        .flow-step,
-        .news-item
-    `);
-
-    animatedElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// Smooth scroll functionality
+// Smooth Scroll for Navigation Links
 function initSmoothScroll() {
-    // Add smooth scrolling to all internal links
-    const links = document.querySelectorAll('a[href^="#"]');
+    const navLinks = document.querySelectorAll('a[href^="#"]');
 
-    links.forEach(link => {
+    navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
 
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
                 const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight - 20;
 
                 window.scrollTo({
                     top: targetPosition,
@@ -267,12 +224,67 @@ function initSmoothScroll() {
     });
 }
 
-// Utility functions for CTA buttons
+// Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    let lastScrollY = window.scrollY;
+
+    if (header) {
+        window.addEventListener('scroll', function() {
+            const currentScrollY = window.scrollY;
+
+            // Add shadow when scrolled
+            if (currentScrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Hide/show header on scroll (optional)
+            if (currentScrollY > 100) {
+                if (currentScrollY > lastScrollY) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScrollY = currentScrollY;
+        });
+    }
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animatedElements = document.querySelectorAll('.problem-item, .service-item, .feature-item, .case-item, .news-item, .flow-step');
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Utility Functions
 function scrollToContact() {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
         const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = contactSection.offsetTop - headerHeight;
+        const targetPosition = contactSection.offsetTop - headerHeight - 20;
 
         window.scrollTo({
             top: targetPosition,
@@ -285,7 +297,7 @@ function scrollToServices() {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
         const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = servicesSection.offsetTop - headerHeight;
+        const targetPosition = servicesSection.offsetTop - headerHeight - 20;
 
         window.scrollTo({
             top: targetPosition,
@@ -294,284 +306,125 @@ function scrollToServices() {
     }
 }
 
-// Back to top button functionality
-function initBackToTop() {
-    const backToTopButton = document.createElement('button');
-    backToTopButton.innerHTML = '↑';
-    backToTopButton.className = 'back-to-top';
-    backToTopButton.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--accent-green);
-        color: white;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
+// Custom CSS for animations and interactions
+const customCSS = `
+.nav-open {
+    display: flex !important;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-open .nav-list {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+    border-color: #e74c3c;
+    background-color: #fdf2f2;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+@keyframes fadeInUp {
+    from {
         opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    `;
-
-    document.body.appendChild(backToTopButton);
-
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopButton.style.opacity = '1';
-            backToTopButton.style.visibility = 'visible';
-        } else {
-            backToTopButton.style.opacity = '0';
-            backToTopButton.style.visibility = 'hidden';
-        }
-    });
-
-    // Scroll to top when clicked
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Initialize back to top button
-document.addEventListener('DOMContentLoaded', function() {
-    initBackToTop();
-});
-
-// Loading animation
-function initLoadingAnimation() {
-    const loader = document.createElement('div');
-    loader.className = 'page-loader';
-    loader.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--warm-white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        ">
-            <div style="
-                width: 50px;
-                height: 50px;
-                border: 3px solid var(--primary-beige);
-                border-top: 3px solid var(--accent-green);
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            "></div>
-        </div>
-        <style>
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        </style>
-    `;
-
-    document.body.appendChild(loader);
-
-    // Hide loader when page is fully loaded
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.remove();
-            }, 500);
-        }, 500);
-    });
-}
-
-// Initialize loading animation
-initLoadingAnimation();
-
-// Mobile menu styles
-const mobileMenuStyles = `
-    @media (max-width: 768px) {
-        .nav-menu {
-            position: fixed;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: var(--warm-white);
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            flex-direction: column;
-            gap: 1rem;
-            z-index: 999;
-        }
-
-        .nav-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-            display: flex;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
+        transform: translateY(30px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.problem-item,
+.service-item,
+.feature-item,
+.case-item,
+.news-item,
+.flow-step {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+@media (max-width: 768px) {
+    .nav-open {
+        top: 65px;
+    }
+}
 `;
 
-// Add mobile menu styles to page
+// Inject custom CSS
 const styleSheet = document.createElement('style');
-styleSheet.textContent = mobileMenuStyles;
+styleSheet.textContent = customCSS;
 document.head.appendChild(styleSheet);
 
-// Performance optimization - lazy loading images
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[src*="placehold.co"]');
+// Loading Screen (optional)
+window.addEventListener('load', function() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+});
 
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                // Add fade-in effect
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-
-                setTimeout(() => {
-                    img.style.opacity = '1';
-                }, 100);
-
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
+// Performance Optimization
+// Throttle scroll events
+function throttle(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
-// Initialize lazy loading
-document.addEventListener('DOMContentLoaded', function() {
-    initLazyLoading();
+// Apply throttling to scroll events
+const throttledScrollHandler = throttle(function() {
+    // Any scroll-based functionality can be added here
+}, 16); // ~60fps
+
+window.addEventListener('scroll', throttledScrollHandler);
+
+// Error Handling
+window.addEventListener('error', function(e) {
+    console.error('JavaScript Error:', e.error);
 });
-
-// Form field focus effects
-document.addEventListener('DOMContentLoaded', function() {
-    const formFields = document.querySelectorAll('input, textarea, select');
-
-    formFields.forEach(field => {
-        field.addEventListener('focus', function() {
-            this.parentElement.classList.add('field-focused');
-        });
-
-        field.addEventListener('blur', function() {
-            this.parentElement.classList.remove('field-focused');
-            if (this.value) {
-                this.parentElement.classList.add('field-filled');
-            } else {
-                this.parentElement.classList.remove('field-filled');
-            }
-        });
-    });
-});
-
-// Add form field styles
-const formFieldStyles = `
-    .field-focused input,
-    .field-focused textarea,
-    .field-focused select {
-        border-color: var(--accent-green);
-        box-shadow: 0 0 0 3px rgba(200, 213, 161, 0.1);
-    }
-
-    .field-filled input,
-    .field-filled textarea,
-    .field-filled select {
-        background: var(--primary-light);
-    }
-`;
-
-const formStyleSheet = document.createElement('style');
-formStyleSheet.textContent = formFieldStyles;
-document.head.appendChild(formStyleSheet);
 
 // Console welcome message
-console.log(`
-🌿 おーぷい法務事務所のウェブサイトへようこそ
-   Website developed with care and attention to detail
-
-   💚 若い女性の皆様をサポートします
-   📞 お気軽にお問い合わせください: hatachi.keibu@gmail.com
-`);
-
-// Error handling for missing elements
-window.addEventListener('error', function(e) {
-    console.warn('Non-critical error occurred:', e.error);
-});
-
-// Accessibility improvements
-document.addEventListener('keydown', function(e) {
-    // Skip to main content with keyboard
-    if (e.key === 'Tab' && !e.shiftKey && document.activeElement === document.body) {
-        const mainContent = document.querySelector('main') || document.querySelector('.hero');
-        if (mainContent) {
-            mainContent.focus();
-        }
-    }
-
-    // Close mobile menu with Escape key
-    if (e.key === 'Escape') {
-        const navMenu = document.getElementById('navMenu');
-        const navToggle = document.getElementById('navToggle');
-        if (navMenu && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-        }
-    }
-});
-
-// Add skip link for accessibility
-document.addEventListener('DOMContentLoaded', function() {
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'メインコンテンツにスキップ';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--accent-green);
-        color: white;
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 10000;
-        transition: top 0.3s;
-    `;
-
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-
-    document.body.insertBefore(skipLink, document.body.firstChild);
-});
+console.log('%c士業事務所おーぷい', 'color: #9CAF88; font-size: 20px; font-weight: bold;');
+console.log('%cWebサイトをご覧いただき、ありがとうございます！', 'color: #666;');
