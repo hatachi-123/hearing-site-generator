@@ -28,14 +28,14 @@ jobs:
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
           echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
 
-      - name: Notify: サイト生成開始
+      - name: "Notify: site generation started"
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: |
           curl -s -X POST "$API_BASE/api/callback/status" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
-            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"generating_site\"}" || true
+            -d '{"sessionId": "${{ steps.session.outputs.session_id }}", "status": "generating_site"}' || true
 
       - name: Generate site with Claude API
         id: generate
@@ -48,7 +48,6 @@ jobs:
 
           mkdir -p "sites/$SESSION_ID"
 
-          # jqで安全にJSONペイロードを構築（特殊文字のエスケープ対応）
           PAYLOAD=$(jq -n \
             --arg prompt "$PROMPT_CONTENT" \
             '{
@@ -64,7 +63,6 @@ jobs:
             -H "anthropic-version: 2023-06-01" \
             -d "$PAYLOAD")
 
-          # エラーチェック
           ERROR_TYPE=$(echo "$RESPONSE" | jq -r '.type // empty')
           if [ "$ERROR_TYPE" = "error" ]; then
             ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message')
@@ -72,19 +70,18 @@ jobs:
             exit 1
           fi
 
-          # レスポンスからHTMLを抽出
           echo "$RESPONSE" | python3 -c "
-          import sys, json
-          data = json.load(sys.stdin)
-          text = data['content'][0]['text']
-          if '\`\`\`html' in text:
-              text = text.split('\`\`\`html')[1].split('\`\`\`')[0]
-          elif '\`\`\`' in text:
-              text = text.split('\`\`\`')[1].split('\`\`\`')[0]
-          print(text.strip())
-          " > "sites/$SESSION_ID/index.html"
+import sys, json
+data = json.load(sys.stdin)
+text = data['content'][0]['text']
+if '\`\`\`html' in text:
+    text = text.split('\`\`\`html')[1].split('\`\`\`')[0]
+elif '\`\`\`' in text:
+    text = text.split('\`\`\`')[1].split('\`\`\`')[0]
+print(text.strip())
+" > "sites/$SESSION_ID/index.html"
 
-          echo "サイト生成完了: sites/$SESSION_ID/index.html"
+          echo "Generated: sites/$SESSION_ID/index.html"
 
       - name: Commit generated site
         run: |
@@ -110,9 +107,9 @@ jobs:
 
           DRAFT_URL=$(grep -oP 'https://[^\s]+\.pages\.dev' deploy_output.txt | head -1)
           echo "draft_url=$DRAFT_URL" >> $GITHUB_OUTPUT
-          echo "デプロイ完了: $DRAFT_URL"
+          echo "Deployed: $DRAFT_URL"
 
-      - name: Notify: デプロイ完了
+      - name: "Notify: deploy success"
         if: success()
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
@@ -123,7 +120,7 @@ jobs:
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
             -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"deployed\", \"draftUrl\": \"$DRAFT_URL\"}"
 
-      - name: Notify: 失敗
+      - name: "Notify: deploy failed"
         if: failure()
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
@@ -131,4 +128,4 @@ jobs:
           curl -s -X POST "$API_BASE/api/callback/status" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
-            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"failed\"}" || true
+            -d '{"sessionId": "${{ steps.session.outputs.session_id }}", "status": "failed"}' || true
