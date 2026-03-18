@@ -21,7 +21,6 @@ jobs:
       - name: Extract session info
         id: session
         run: |
-          # 最新のプロンプトファイルを取得
           PROMPT_FILE=$(ls -t prompts/*.md | head -1)
           SESSION_ID=$(basename "$PROMPT_FILE" .md)
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
@@ -35,27 +34,37 @@ jobs:
           PROMPT_FILE="${{ steps.session.outputs.prompt_file }}"
           PROMPT_CONTENT=$(cat "$PROMPT_FILE")
 
-          # サイト出力ディレクトリを作成
           mkdir -p "sites/$SESSION_ID"
 
-          # Claude APIでサイト生成
+          # jqで安全にJSONペイロードを構築（特殊文字のエスケープ対応）
+          PAYLOAD=$(jq -n \
+            --arg prompt "$PROMPT_CONTENT" \
+            '{
+              model: "claude-sonnet-4-20250514",
+              max_tokens: 8096,
+              system: "あなたはWebサイトジェネレーターです。プロンプトに基づいて、完全なHTMLファイルを生成してください。レスポンシブ対応、モダンなデザインで、CSSはインラインまたはstyleタグで含めてください。JavaScriptも必要に応じて含めてください。HTMLコードのみを出力し、説明文は不要です。",
+              messages: [{role: "user", content: ("以下のプロンプトに基づいてWebサイトを生成してください：\n\n" + $prompt)}]
+            }')
+
           RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
             -H "Content-Type: application/json" \
             -H "x-api-key: $ANTHROPIC_API_KEY" \
             -H "anthropic-version: 2023-06-01" \
-            -d "{
-              \"model\": \"claude-sonnet-4-20250514\",
-              \"max_tokens\": 8096,
-              \"system\": \"あなたはWebサイトジェネレーターです。プロンプトに基づいて、完全なHTMLファイルを生成してください。レスポンシブ対応、モダンなデザインで、CSSはインラインまたはstyleタグで含めてください。JavaScriptも必要に応じて含めてください。HTMLコードのみを出力し、説明文は不要です。\",
-              \"messages\": [{\"role\": \"user\", \"content\": \"以下のプロンプトに基づいてWebサイトを生成してください：\n\n$PROMPT_CONTENT\"}]
-            }")
+            -d "$PAYLOAD")
+
+          # エラーチェック
+          ERROR_TYPE=$(echo "$RESPONSE" | jq -r '.type // empty')
+          if [ "$ERROR_TYPE" = "error" ]; then
+            ERROR_MSG=$(echo "$RESPONSE" | jq -r '.error.message')
+            echo "::error::Claude API error: $ERROR_MSG"
+            exit 1
+          fi
 
           # レスポンスからHTMLを抽出
           echo "$RESPONSE" | python3 -c "
           import sys, json
           data = json.load(sys.stdin)
           text = data['content'][0]['text']
-          # HTMLタグを抽出（コードブロックがある場合は除去）
           if '\`\`\`html' in text:
               text = text.split('\`\`\`html')[1].split('\`\`\`')[0]
           elif '\`\`\`' in text:
@@ -81,13 +90,11 @@ jobs:
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
           npm install -g wrangler
-          # 案件ごとにPagesプロジェクトにデプロイ
           wrangler pages deploy "sites/$SESSION_ID" \
             --project-name="draft-site-$SESSION_ID" \
             --branch=main \
             2>&1 | tee deploy_output.txt
 
-          # デプロイURLを取得
           DRAFT_URL=$(grep -oP 'https://[^\s]+\.pages\.dev' deploy_output.txt | head -1)
           echo "draft_url=$DRAFT_URL" >> $GITHUB_OUTPUT
           echo "デプロイ完了: $DRAFT_URL"
