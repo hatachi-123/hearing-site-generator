@@ -32,10 +32,11 @@ jobs:
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
           curl -s -X POST "$API_BASE/api/callback/status" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
-            -d '{"sessionId": "${{ steps.session.outputs.session_id }}", "status": "generating_site"}' || true
+            -d "{\"sessionId\": \"$SESSION_ID\", \"status\": \"generating_site\"}" || true
 
       - name: Generate site with Claude API
         id: generate
@@ -70,16 +71,12 @@ jobs:
             exit 1
           fi
 
-          echo "$RESPONSE" | python3 -c "
-import sys, json
-data = json.load(sys.stdin)
-text = data['content'][0]['text']
-if '\`\`\`html' in text:
-    text = text.split('\`\`\`html')[1].split('\`\`\`')[0]
-elif '\`\`\`' in text:
-    text = text.split('\`\`\`')[1].split('\`\`\`')[0]
-print(text.strip())
-" > "sites/$SESSION_ID/index.html"
+          HTML_TEXT=$(echo "$RESPONSE" | jq -r '.content[0].text')
+          echo "$HTML_TEXT" | sed -n '/^```html/,/^```/{/^```/d;p}' > "sites/$SESSION_ID/index.html"
+
+          if [ ! -s "sites/$SESSION_ID/index.html" ]; then
+            echo "$HTML_TEXT" > "sites/$SESSION_ID/index.html"
+          fi
 
           echo "Generated: sites/$SESSION_ID/index.html"
 
@@ -114,18 +111,20 @@ print(text.strip())
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
           DRAFT_URL="${{ steps.deploy.outputs.draft_url }}"
           curl -s -X POST "$API_BASE/api/callback/status" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
-            -d "{\"sessionId\": \"${{ steps.session.outputs.session_id }}\", \"status\": \"deployed\", \"draftUrl\": \"$DRAFT_URL\"}"
+            -d "{\"sessionId\": \"$SESSION_ID\", \"status\": \"deployed\", \"draftUrl\": \"$DRAFT_URL\"}"
 
       - name: "Notify: deploy failed"
         if: failure()
         env:
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
         run: |
+          SESSION_ID="${{ steps.session.outputs.session_id }}"
           curl -s -X POST "$API_BASE/api/callback/status" \
             -H "Content-Type: application/json" \
             -H "Authorization: Bearer $ADMIN_PASSWORD" \
-            -d '{"sessionId": "${{ steps.session.outputs.session_id }}", "status": "failed"}' || true
+            -d "{\"sessionId\": \"$SESSION_ID\", \"status\": \"failed\"}" || true
