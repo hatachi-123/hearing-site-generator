@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bliss Massage Salon - 心と体のリラクゼーション空間</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4829f;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #d4829f;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #d4829f, #e8b4d1);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 130, 159, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f0f0 0%, #faf8f8 100%);
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .highlight {
+            color: #d4829f;
+            font-weight: 500;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: linear-gradient(45deg, #f8e8ed, #e8d4d9);
+            border-radius: 20px;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 130, 159, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4829f, #e8b4d1);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .service-price {
+            font-weight: 500;
+            color: #d4829f;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f4f5 0%, #f5f0f1 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-content h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .info-value {
+            color: #666;
+        }
+
+        /* Access Section */
+        .access {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .access-info {
+            background: #f8f4f5;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .access-info h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .access-item {
+            margin-bottom: 1rem;
+        }
+
+        .access-label {
+            font-weight: 500;
+            color: #333;
+            display: inline-block;
+            width: 80px;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(45deg, #f0f0f0, #e8e8e8);
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        /* Reviews Section */
+        .reviews {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f4f5 0%, #f5f0f1 100%);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .review-rating {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: 500;
+            color: #333;
+            text-align: right;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #f8f4f5;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item h4 {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #666;
+        }
+
+        .contact-form {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, #d4829f, #e8b4d1);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #d4829f;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #d4829f;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid,
+            .access-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .services,
+            .about,
+            .access,
+            .reviews,
+            .contact {
+                padding: 60px 0;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Bliss Massage Salon</a>
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#access">アクセス</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+                <a href="#contact" class="cta-button">ご予約</a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1><span class="highlight">心と体の</span><br>リラクゼーション空間</h1>
+                <p>忙しい毎日から解放される、上質なひとときをお過ごしください</p>
+                <div class="hero-image">
+                    <span>心地よいマッサージ施術のイメージ</span>
+                </div>
+                <a href="#contact" class="cta-button">ご予約・お問い合わせ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">サービス紹介</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💆</div>
+                    <h3>リラクゼーションマッサージ</h3>
+                    <p>全身の疲れを優しくほぐし、深いリラクゼーションへ導きます。ストレス解消に最適です。</p>
+                    <div class="service-price">60分 ¥6,000〜</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>アロマトリートメント</h3>
+                    <p>天然精油の香りとともに、心身ともにリフレッシュ。お好みの香りをお選びいただけます。</p>
+                    <div class="service-price">90分 ¥9,000〜</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💎</div>
+                    <h3>フェイシャルエステ</h3>
+                    <p>お肌の状態に合わせたカスタムケア。美肌効果とリラクゼーションを同時に。</p>
+                    <div class="service-price">75分 ¥8,500〜</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3>ホットストーン</h3>
+                    <p>温められた天然石の温熱効果で、身体の芯から温まり、深い癒しを体験できます。</p>
+                    <div class="service-price">120分 ¥12,000〜</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">会社概要</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>私たちの理念</h3>
+                    <p>Bliss Massage Salonでは、お客様お一人お一人に寄り添った丁寧なサービスを心がけております。清潔で落ち着いた空間で、日々の疲れを癒し、心身ともにリフレッシュしていただけるよう努めています。</p>
+                    <p>経験豊富な女性セラピストが、安心・安全な施術をご提供いたします。初めての方も、お気軽にお越しください。</p>
+                </div>
+                <div class="company-info">
+                    <div class="info-row">
+                        <span class="info-label">会社名</span>
+                        <span class="info-value">株式会社Bliss</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">設立年</span>
+                        <span class="info-value">2018年</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">代表者</span>
+                        <span class="info-value">佐藤 美希</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">事業内容</span>
+                        <span class="info-value">リラクゼーションサロン運営</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">セラピスト</span>
+                        <span class="info-value">国際ライセンス保有者在籍</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section class="access" id="access">
+        <div class="container">
+            <h2 class="section-title">店舗・アクセス情報</h2>
+            <div class="access-grid">
+                <div class="access-info">
+                    <h3>店舗情報</h3>
+                    <div class="access-item">
+                        <span class="access-label">住所：</span>
+                        東京都渋谷区神南1-2-3 ビューティービル5F
+                    </div>
+                    <div class="access-item">
+                        <span class="access-label">電話：</span>
+                        03-1234-5678
+                    </div>
+                    <div class="access-item">
+                        <span class="access-label">営業時間：</span>
+                        平日 10:00-21:00<br>
+                        土日祝 10:00-19:00
+                    </div>
+                    <div class="access-item">
+                        <span class="access-label">定休日：</span>
+                        毎週火曜日
+                    </div>
+                    <div class="access-item">
+                        <span class="access-label">最寄駅：</span>
+                        JR渋谷駅 徒歩5分<br>
+                        地下鉄表参道駅 徒歩8分
+                    </div>
+                </div>
+                <div class="map-placeholder">
+                    <span>📍 アクセスマップ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title">お客様の声</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">「初めてでしたが、とても丁寧に対応していただきました。施術後は身体が軽くなり、ぐっすり眠れました。また通いたいと思います。」</p>
+                    <p class="review-author">— Y.T様（20代女性）</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">「アロマの香りがとても良く、リラックスできました。セラピストさんの技術も素晴らしく、肩こりが改善されました。」</p>
+                    <p class="review-author">— M.K様（30代女性）</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">「清潔な店内で安心して施術を受けられました。フェイシャルエステも気持ちよく、お肌がツルツルになりました。」</p>
+                    <p class="review-author">— A.S様（20代女性）</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">「ホットストーンの施術が最高でした。身体の芯から温まり、疲れが一気に取れました。定期的に通っています。」</p>
+                    <p class="review-author">— R.N様（30代女性）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ・ご予約</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>お電話でのご予約</h4>
+                        <p>03-1234-5678<br>
+                        受付時間：9:30-20:30（火曜定休）</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>WEBからのご予約</h4>
+                        <p>24時間受付中<br>
+                        お気軽にお問い合わせください</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>初回限定特典</h4>
+                        <p>初回のお客様は全メニュー20%OFF<br>
+                        （要事前予約）</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">お名前 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">お電話番号 *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ご希望・ご質問</label>
+                        <textarea id="message" name="message" placeholder="ご希望の施術、日時、その他ご質問等をお聞かせください"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">送信する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bliss Massage Salon</h4>
+                    <p>心と体のリラクゼーション空間で、<br>忙しい毎日から解放される<br>上質なひとときをお過ごしください。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#services">リラクゼーションマッサージ</a></li>
+                        <li><a href="#services">アロマトリートメント</a></li>
+                        <li><a href="#services">フェイシャルエステ</a></li>
+                        <li><a href="#services">ホットストーン</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>会社情報</h4>
+                    <ul>
+                        <li><a href="#about">会社概要</a></li>
+                        <li><a href="#access">店舗・アクセス</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                        <li><a href="#">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>フォローする</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">LINE公式アカウント</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bliss Massage Salon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('お問い合わせありがとうございます。2営業日以内にご連絡いたします。');
+            this.reset();
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to service cards and other elements
+        document.querySelectorAll('.service-card, .review-card, .about-content, .company-info').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
