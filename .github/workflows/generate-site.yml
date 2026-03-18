@@ -26,7 +26,6 @@ jobs:
           echo "prompt_content<<PROMPT_DELIM" >> $GITHUB_OUTPUT
           echo "$PROMPT_CONTENT" >> $GITHUB_OUTPUT
           echo "PROMPT_DELIM" >> $GITHUB_OUTPUT
-          # プロジェクト名（Cloudflare Pages用、63文字以内）
           SHORT_ID=$(echo "$SESSION_ID" | cut -c1-8)
           echo "project_name=draft-${SHORT_ID}" >> $GITHUB_OUTPUT
 
@@ -56,20 +55,11 @@ jobs:
           PROMPT_CONTENT="${{ steps.session.outputs.prompt_content }}"
 
           claude -p "
-          以下のプロンプトに基づいて、Webサイトを生成してください。
+          以下のプロンプトに基づいてWebサイトを生成してください。
+          CLAUDE.md の共通ルールを必ず守ること。
 
           【出力先】
           sites/$SESSION_ID/ ディレクトリに出力してください。
-
-          【要件】
-          - index.html を必ず作成すること
-          - CSS は style.css として分離すること
-          - 必要に応じて script.js も作成すること
-          - レスポンシブ対応（モバイル・タブレット・PC）
-          - モダンで洗練されたデザイン
-          - 日本語フォント対応（Google Fonts の Noto Sans JP 推奨）
-          - OGP メタタグ、favicon 設定も含めること
-          - 画像は適切なプレースホルダー（via https://placehold.co）を使用
 
           【プロンプト内容】
           $PROMPT_CONTENT
@@ -84,7 +74,7 @@ jobs:
             exit 1
           fi
           echo "Site generated successfully"
-          ls -la "sites/$SESSION_ID/"
+          ls -laR "sites/$SESSION_ID/"
 
       - name: Commit generated site
         run: |
@@ -104,10 +94,8 @@ jobs:
           SESSION_ID="${{ steps.session.outputs.session_id }}"
           PROJECT_NAME="${{ steps.session.outputs.project_name }}"
 
-          # プロジェクトが存在しなければ作成
-          npx wrangler pages project create "$PROJECT_NAME" --production-branch=main 2>/dev/null || echo "Project already exists or creation skipped"
+          npx wrangler pages project create "$PROJECT_NAME" --production-branch=main 2>/dev/null || echo "Project already exists"
 
-          # デプロイ
           npx wrangler pages deploy "sites/$SESSION_ID" \
             --project-name="$PROJECT_NAME" \
             --branch=main \
