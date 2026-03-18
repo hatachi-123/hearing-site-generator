@@ -3,529 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>士業事務所おーぷい｜全国対応の法務サービス</title>
+    <title>士業事務所おーぷい | 全国対応の法務サービス - 女性にやさしい相談窓口</title>
+    <meta name="description" content="士業事務所おーぷいは全国対応の法務サービス提供事務所です。女性目線でのサポートを重視し、初回相談無料で安心してご相談いただけます。">
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="士業事務所おーぷいは、若い女性の皆様を中心に全国対応の法務サービスを提供しています。初回相談無料、オンライン相談対応可能。親しみやすく信頼できる法務のパートナーとしてお手伝いいたします。">
-    <meta name="keywords" content="士業,法務,相談,女性,全国対応,オンライン相談,初回無料">
-
-    <!-- OGP Meta Tags -->
-    <meta property="og:title" content="士業事務所おーぷい｜全国対応の法務サービス">
-    <meta property="og:description" content="士業事務所おーぷいは、若い女性の皆様を中心に全国対応の法務サービスを提供しています。初回相談無料、オンライン相談対応可能。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com">
-    <meta property="og:image" content="https://placehold.co/1200x630/9CAF88/FFFFFF?text=おーぷい法務事務所">
-    <meta property="og:site_name" content="士業事務所おーぷい">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="士業事務所おーぷい｜全国対応の法務サービス">
-    <meta name="twitter:description" content="士業事務所おーぷいは、若い女性の皆様を中心に全国対応の法務サービスを提供しています。">
-    <meta name="twitter:image" content="https://placehold.co/1200x630/9CAF88/FFFFFF?text=おーぷい法務事務所">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
+    <!-- ヘッダー -->
+    <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="https://placehold.co/150x50/9CAF88/FFFFFF?text=おーぷい" alt="おーぷい">
+                    <h1>おーぷい</h1>
+                    <span class="logo-sub">士業事務所</span>
                 </div>
-                <nav class="nav" id="nav">
+                <nav class="nav" role="navigation">
                     <ul class="nav-list">
-                        <li><a href="#about">事務所について</a></li>
                         <li><a href="#services">業務内容</a></li>
-                        <li><a href="#features">選ばれる理由</a></li>
+                        <li><a href="#reasons">選ばれる理由</a></li>
                         <li><a href="#pricing">料金</a></li>
-                        <li><a href="#contact">お問い合わせ</a></li>
+                        <li><a href="#about">代表挨拶</a></li>
+                        <li><a href="#faq">よくある質問</a></li>
                     </ul>
                 </nav>
-                <div class="header-actions">
-                    <a href="#contact" class="btn btn-primary">お問い合わせ</a>
-                    <button class="mobile-menu-btn" id="mobile-menu-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
+                <a href="#contact" class="cta-button header-cta">お問い合わせ</a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- ヒーロー -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="highlight">あなたの暮らしを守る</span><br>
-                        信頼できる法務のパートナー
-                    </h1>
-                    <p class="hero-description">
-                        士業事務所「おーぷい」では、若い女性の皆様を中心に<br>
-                        親しみやすく、わかりやすい法務サービスを全国対応で提供しています。<br>
-                        初回相談は無料、オンラインでも対応可能です。
+                    <h2 class="hero-title">
+                        女性に寄り添う<br>
+                        <span class="accent-text">法務サービス</span>
+                    </h2>
+                    <p class="hero-subtitle">
+                        お一人お一人の想いに丁寧に向き合い、<br>
+                        安心して相談できる環境をご提供いたします
                     </p>
-                    <div class="hero-cta">
-                        <a href="#contact" class="btn btn-primary btn-large">
-                            <i class="fas fa-comments"></i>
-                            無料相談はこちら
-                        </a>
-                        <a href="tel:0120-000-000" class="btn btn-secondary btn-large">
-                            <i class="fas fa-phone"></i>
-                            お電話でのご相談
-                        </a>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <span>初回相談無料</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <span>オンライン対応</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                                    <path d="M2 12h20"/>
+                                </svg>
+                            </div>
+                            <span>全国対応</span>
+                        </div>
                     </div>
+                    <a href="#contact" class="cta-button hero-cta">無料相談を申し込む</a>
                 </div>
                 <div class="hero-image">
-                    <img src="https://placehold.co/500x400/F5F5DC/9CAF88?text=安心のサポート" alt="安心のサポート">
+                    <div class="image-placeholder">
+                        <p>女性弁護士が<br>親身に相談に<br>のっている写真</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <svg class="wave-divider" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L48 110C96 100 192 80 288 73.3C384 66.7 480 73.3 576 80C672 86.7 768 93.3 864 86.7C960 80 1056 60 1152 53.3C1248 46.7 1344 53.3 1392 56.7L1440 60V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0V120Z" fill="var(--color-base)"/>
+        </svg>
     </section>
 
-    <!-- Problems Section -->
-    <section class="problems" id="problems">
+    <!-- お悩み共感セクション -->
+    <section class="problems section">
         <div class="container">
             <h2 class="section-title">こんなお悩みありませんか？</h2>
             <div class="problems-grid">
-                <div class="problem-item">
+                <div class="problem-card fade-up">
                     <div class="problem-icon">
-                        <i class="fas fa-exclamation-circle"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="m22 21-3-3"/>
+                        </svg>
                     </div>
-                    <h3>法律の専門用語がわからない</h3>
-                    <p>難しい法律用語や手続きについて、わかりやすく丁寧にご説明いたします。</p>
+                    <h3>相談先がわからない</h3>
+                    <p>法的な問題を抱えているけれど、どこに相談したらいいのかわからずお困りではありませんか？</p>
                 </div>
-                <div class="problem-item">
+                <div class="problem-card fade-up">
                     <div class="problem-icon">
-                        <i class="fas fa-clock"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                        </svg>
                     </div>
-                    <h3>忙しくて事務所に行けない</h3>
-                    <p>オンライン相談や電話相談で、お忙しい方でも安心してご利用いただけます。</p>
+                    <h3>専門用語が難しくて不安</h3>
+                    <p>法律の専門用語がわからず、本当に理解できているか不安になることはありませんか？</p>
                 </div>
-                <div class="problem-item">
+                <div class="problem-card fade-up">
                     <div class="problem-icon">
-                        <i class="fas fa-yen-sign"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
                     </div>
-                    <h3>費用が心配</h3>
-                    <p>透明性のある料金体系で、初回相談は無料。安心してご相談ください。</p>
+                    <h3>忙しくて相談に行けない</h3>
+                    <p>仕事や家事に追われて、なかなか法律事務所に足を運ぶ時間が取れずにいませんか？</p>
                 </div>
-                <div class="problem-item">
+                <div class="problem-card fade-up">
                     <div class="problem-icon">
-                        <i class="fas fa-heart"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="m19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
                     </div>
-                    <h3>女性の視点で相談したい</h3>
-                    <p>女性ならではのお悩みも、親身になってお聞きし、最適な解決策をご提案します。</p>
+                    <h3>女性目線で相談したい</h3>
+                    <p>女性特有の悩みや状況について、同じ女性の視点で理解してもらえる相談相手をお探しですか？</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- 業務内容 -->
+    <section class="services section" id="services">
         <div class="container">
             <h2 class="section-title">業務内容・取扱分野</h2>
-            <p class="section-subtitle">幅広い法務サービスで、あなたの暮らしをサポートします</p>
+            <p class="section-subtitle">幅広い法務サービスでお客様をサポートいたします</p>
             <div class="services-grid">
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-home"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="m9 9 5 5"/>
+                            <path d="m15 9-5 5"/>
+                        </svg>
                     </div>
-                    <h3>不動産関連</h3>
-                    <p>売買契約、賃貸借契約、登記手続きなど、不動産に関するあらゆるご相談を承ります。</p>
+                    <h3>離婚・家事事件</h3>
+                    <p>離婚協議、親権、養育費、慰謝料など家庭内の法的問題について、女性の立場を理解してサポートします。</p>
                 </div>
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-users"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                            <path d="M2 12h20"/>
+                        </svg>
                     </div>
-                    <h3>家族・相続</h3>
-                    <p>相続手続き、遺言書作成、家族間のトラブル解決など、家族に関するお悩みをサポート。</p>
+                    <h3>相続・遺言</h3>
+                    <p>相続手続き、遺言書作成、遺産分割協議など、大切な財産の承継をスムーズにサポートします。</p>
                 </div>
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-briefcase"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
                     </div>
-                    <h3>会社設立・法人</h3>
-                    <p>会社設立、定款作成、各種変更登記など、ビジネスのスタートを全力サポート。</p>
+                    <h3>労働問題</h3>
+                    <p>セクハラ、パワハラ、不当解雇、残業代未払いなど職場でのトラブルを解決いたします。</p>
                 </div>
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
                     </div>
-                    <h3>契約書作成</h3>
-                    <p>各種契約書の作成・チェック、リーガルチェックなど、契約に関するサポート。</p>
+                    <h3>契約書作成・確認</h3>
+                    <p>各種契約書の作成・リーガルチェックを通じて、安心してビジネスを進められるようサポートします。</p>
                 </div>
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
                     </div>
-                    <h3>債務整理</h3>
-                    <p>借金問題、任意整理、個人再生など、債務に関するお悩みを解決いたします。</p>
+                    <h3>債権回収</h3>
+                    <p>売掛金、貸金の回収など、適切な法的手続きによる債権回収をサポートします。</p>
                 </div>
-                <div class="service-item">
+                <div class="service-card fade-up">
                     <div class="service-icon">
-                        <i class="fas fa-balance-scale"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
                     </div>
                     <h3>その他法務相談</h3>
-                    <p>上記以外の法的なお悩みも、まずはお気軽にご相談ください。</p>
+                    <p>日常生活や事業活動における様々な法的問題について、お気軽にご相談ください。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- 選ばれる理由 -->
+    <section class="reasons section" id="reasons">
         <div class="container">
             <h2 class="section-title">おーぷいが選ばれる理由</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="https://placehold.co/300x200/F5F5DC/9CAF88?text=女性目線" alt="女性目線のサポート">
+            <div class="reasons-container">
+                <div class="reason-item fade-up">
+                    <div class="reason-number">01</div>
+                    <div class="reason-content">
+                        <h3>女性目線での丁寧なサポート</h3>
+                        <p>女性特有の悩みや立場を深く理解し、お一人お一人に寄り添ったサポートを心がけています。専門用語を使わず、わかりやすい言葉で説明いたします。</p>
                     </div>
-                    <h3>女性目線でのサポート</h3>
-                    <p>女性ならではの視点と感性で、お客様の立場に立った親身なサポートを提供。専門用語を使わず、わかりやすい言葉でご説明いたします。</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="https://placehold.co/300x200/FFF8DC/9CAF88?text=全国対応" alt="全国対応">
+                <div class="reason-item fade-up">
+                    <div class="reason-number">02</div>
+                    <div class="reason-content">
+                        <h3>オンライン相談で全国対応</h3>
+                        <p>忙しい女性のライフスタイルに合わせ、オンライン相談を積極的に活用。お子様がいらっしゃる方でも、ご自宅から安心して相談いただけます。</p>
                     </div>
-                    <h3>全国どこでも対応</h3>
-                    <p>オンライン相談システムを活用し、全国どちらにお住まいでもサービスをご利用いただけます。移動時間や交通費の心配もありません。</p>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-image">
-                        <img src="https://placehold.co/300x200/D2B48C/FFFFFF?text=安心料金" alt="安心の料金体系">
+                <div class="reason-item fade-up">
+                    <div class="reason-number">03</div>
+                    <div class="reason-content">
+                        <h3>明確な料金体系と初回無料相談</h3>
+                        <p>料金は事前に明確にお伝えし、追加費用の心配はありません。初回相談は無料で、まずはお悩みをお聞かせください。</p>
                     </div>
-                    <h3>安心の料金体系</h3>
-                    <p>初回相談無料、明確な料金設定で安心。事前にしっかりとお見積もりをお出しし、追加料金の心配もございません。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
+    <!-- 料金・費用の目安 -->
+    <section class="pricing section" id="pricing">
         <div class="container">
             <h2 class="section-title">料金・費用の目安</h2>
-            <p class="section-subtitle">透明性のある料金体系で安心してご依頼いただけます</p>
-            <div class="pricing-table">
-                <div class="pricing-item">
-                    <h3>相談料</h3>
-                    <div class="price">
-                        <span class="amount">初回無料</span>
-                        <span class="period">60分まで</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>2回目以降 5,500円/時間</li>
-                        <li>オンライン相談対応</li>
-                        <li>電話相談可能</li>
+            <p class="section-subtitle">透明性のある料金設定で安心してご利用いただけます</p>
+
+            <div class="pricing-highlight fade-up">
+                <h3>初回相談無料</h3>
+                <p>まずはお気軽にお悩みをお聞かせください（60分まで）</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card fade-up">
+                    <h3>法律相談</h3>
+                    <div class="price">5,500円〜</div>
+                    <div class="price-unit">30分あたり</div>
+                    <ul class="price-features">
+                        <li>対面・オンライン選択可</li>
+                        <li>平日夜間・土日対応可</li>
+                        <li>相談記録の作成</li>
                     </ul>
                 </div>
-                <div class="pricing-item featured">
+                <div class="pricing-card fade-up">
                     <h3>書類作成</h3>
-                    <div class="price">
-                        <span class="amount">33,000円〜</span>
-                        <span class="period">基本料金</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>契約書作成</li>
-                        <li>内容証明郵便</li>
-                        <li>各種申請書類</li>
-                        <li>アフターフォロー付き</li>
+                    <div class="price">33,000円〜</div>
+                    <div class="price-unit">内容証明郵便等</div>
+                    <ul class="price-features">
+                        <li>内容証明郵便の作成・発送</li>
+                        <li>各種契約書の作成</li>
+                        <li>修正対応込み</li>
                     </ul>
                 </div>
-                <div class="pricing-item">
-                    <h3>登記手続き</h3>
-                    <div class="price">
-                        <span class="amount">55,000円〜</span>
-                        <span class="period">基本料金</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>不動産登記</li>
-                        <li>会社設立登記</li>
-                        <li>各種変更登記</li>
+                <div class="pricing-card fade-up">
+                    <h3>交渉代理</h3>
+                    <div class="price">110,000円〜</div>
+                    <div class="price-unit">案件により変動</div>
+                    <ul class="price-features">
+                        <li>相手方との交渉代理</li>
+                        <li>示談書の作成</li>
+                        <li>成功報酬制も選択可</li>
                     </ul>
                 </div>
             </div>
+
             <div class="pricing-note">
-                <p>※上記は基本料金です。詳細な費用は案件の内容により異なります。まずは無料相談でお気軽にお尋ねください。</p>
+                <p>※料金は税込表示です。事案の内容により変動する場合がございます。詳細な料金については、初回相談時にご説明いたします。</p>
             </div>
         </div>
     </section>
 
-    <!-- Cases Section -->
-    <section class="cases">
+    <!-- 解決事例 -->
+    <section class="cases section">
         <div class="container">
             <h2 class="section-title">解決事例</h2>
+            <p class="section-subtitle">実際にサポートさせていただいた事例をご紹介します</p>
             <div class="cases-grid">
-                <div class="case-item">
-                    <div class="case-category">不動産関連</div>
-                    <h3>初回の不動産購入で安心サポート</h3>
-                    <p>20代女性のお客様。初めてのマンション購入で不安でしたが、契約書のチェックから登記手続きまで丁寧にサポート。「わからないことを何でも聞ける安心感があった」とのお声をいただきました。</p>
-                    <div class="case-result">
-                        <strong>結果：</strong>スムーズな購入手続き完了、安心のマイホーム取得
-                    </div>
+                <div class="case-card fade-up">
+                    <div class="case-category">離婚・親権問題</div>
+                    <h3>30代女性：子どもの親権を確保し、適正な養育費を獲得</h3>
+                    <p>離婚協議において、お子様の親権と養育費について相手方と意見が対立。丁寧な交渉により、親権を確保し、お子様の将来を考慮した適正な養育費を取り決めることができました。</p>
+                    <div class="case-result">解決期間：3ヶ月</div>
                 </div>
-                <div class="case-item">
-                    <div class="case-category">相続手続き</div>
-                    <h3>複雑な相続手続きを円滑に解決</h3>
-                    <p>30代女性のお客様。両親の相続で兄弟間の意見が分かれていましたが、中立的な立場から適切なアドバイスを提供。全員が納得できる解決策を見出すことができました。</p>
-                    <div class="case-result">
-                        <strong>結果：</strong>家族関係を保ちながら円満な相続手続き完了
-                    </div>
+                <div class="case-card fade-up">
+                    <div class="case-category">労働問題</div>
+                    <h3>40代女性：職場でのセクハラ問題を解決し、精神的苦痛への慰謝料を獲得</h3>
+                    <p>職場でのセクシャルハラスメントに悩まれていたお客様。証拠の収集方法から示談交渉まで一貫してサポートし、適切な慰謝料と再発防止策を実現しました。</p>
+                    <div class="case-result">解決期間：4ヶ月</div>
                 </div>
-                <div class="case-item">
-                    <div class="case-category">債務整理</div>
-                    <h3>借金問題から新たなスタートへ</h3>
-                    <p>20代女性のお客様。クレジットカードの支払いが困難になり、将来への不安を抱えていましたが、任意整理により月々の支払いを軽減。現在は安定した生活を取り戻されています。</p>
-                    <div class="case-result">
-                        <strong>結果：</strong>月々の支払い額を50%軽減、精神的負担も大幅に改善
-                    </div>
+                <div class="case-card fade-up">
+                    <div class="case-category">相続問題</div>
+                    <h3>50代女性：複雑な相続手続きをスムーズに完了</h3>
+                    <p>相続人が多数存在する複雑な相続案件。全国に散らばる相続人との調整をオンラインも活用しながら進め、円満な遺産分割協議を成立させました。</p>
+                    <div class="case-result">解決期間：6ヶ月</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- 代表挨拶 -->
+    <section class="about section" id="about">
         <div class="container">
-            <h2 class="section-title">代表挨拶・経歴</h2>
             <div class="about-content">
-                <div class="about-image">
-                    <img src="https://placehold.co/300x400/F5F5DC/9CAF88?text=代表者写真" alt="代表者">
-                </div>
-                <div class="about-text">
-                    <h3>代表 田中 美咲</h3>
-                    <div class="about-credentials">
-                        <span class="credential">行政書士</span>
-                        <span class="credential">宅地建物取引士</span>
+                <div class="about-image fade-up">
+                    <div class="image-placeholder">
+                        <p>代表者の<br>親しみやすい<br>プロフィール写真</p>
                     </div>
+                </div>
+                <div class="about-text fade-up">
+                    <h2 class="section-title">代表挨拶</h2>
+                    <h3>はじめまして、代表の○○と申します</h3>
                     <p>
-                        皆様、はじめまして。士業事務所「おーぷい」代表の田中美咲と申します。<br><br>
-
-                        私自身も若い頃に法的なトラブルに巻き込まれ、専門用語ばかりで理解が困難だった経験があります。その時に感じた「もっと親しみやすく、わかりやすいサポートがあればいいのに」という想いから、この事務所を立ち上げました。<br><br>
-
-                        特に若い女性の皆様には、人生の重要な場面で法的な問題に直面することが多くあります。そんな時に、気軽に相談できる存在でありたいと思っています。<br><br>
-
-                        お一人お一人のお話をしっかりとお聞きし、最適な解決策を一緒に見つけていきましょう。
+                        法律の世界は専門用語が多く、特に女性の皆様にとって敷居が高く感じられることが多いのではないでしょうか。私自身も女性として、仕事と家庭の両立や、女性特有の悩みを抱えてきました。
                     </p>
-                    <div class="about-experience">
-                        <h4>主な経歴</h4>
+                    <p>
+                        だからこそ、「法律は難しいもの」ではなく「あなたの味方になるもの」として、わかりやすく、親しみやすいサービスを提供したいと考えています。お一人お一人の状況に寄り添い、最適な解決方法を一緒に考えさせていただきます。
+                    </p>
+                    <p>
+                        まずはお気軽にご相談ください。あなたの笑顔を取り戻すお手伝いをさせていただきます。
+                    </p>
+
+                    <div class="qualifications">
+                        <h4>保有資格・経歴</h4>
                         <ul>
+                            <li>行政書士（平成○○年登録）</li>
+                            <li>宅地建物取引士</li>
+                            <li>ファイナンシャルプランナー2級</li>
                             <li>○○大学法学部卒業</li>
-                            <li>行政書士試験合格（令和○年）</li>
-                            <li>宅地建物取引士資格取得</li>
-                            <li>○○法律事務所勤務（3年間）</li>
-                            <li>士業事務所「おーぷい」開設</li>
+                            <li>法務関連業務歴15年</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <svg class="wave-divider bottom" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0L48 10C96 20 192 40 288 46.7C384 53.3 480 46.7 576 40C672 33.3 768 26.7 864 33.3C960 40 1056 60 1152 66.7C1248 73.3 1344 66.7 1392 63.3L1440 60V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0V0Z" fill="var(--color-base)"/>
+        </svg>
     </section>
 
-    <!-- Flow Section -->
-    <section class="flow">
+    <!-- ご依頼の流れ -->
+    <section class="flow section">
         <div class="container">
             <h2 class="section-title">ご依頼の流れ</h2>
             <div class="flow-steps">
-                <div class="flow-step">
-                    <div class="step-number">1</div>
+                <div class="flow-step fade-up">
+                    <div class="step-number">Step 1</div>
                     <div class="step-content">
                         <h3>お問い合わせ</h3>
-                        <p>お電話、メール、お問い合わせフォームからお気軽にご連絡ください。</p>
+                        <p>電話、メール、お問い合わせフォームからお気軽にご連絡ください。初回相談の日程を調整いたします。</p>
                     </div>
                 </div>
-                <div class="flow-step">
-                    <div class="step-number">2</div>
+                <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </div>
+                <div class="flow-step fade-up">
+                    <div class="step-number">Step 2</div>
                     <div class="step-content">
                         <h3>初回相談（無料）</h3>
-                        <p>オンライン・電話・対面でのご相談が可能です。お悩みをお聞かせください。</p>
+                        <p>対面またはオンラインでお悩みを詳しくお聞きします。解決方針や必要な手続き、費用についてご説明いたします。</p>
                     </div>
                 </div>
-                <div class="flow-step">
-                    <div class="step-number">3</div>
+                <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </div>
+                <div class="flow-step fade-up">
+                    <div class="step-number">Step 3</div>
                     <div class="step-content">
-                        <h3>お見積もり・ご提案</h3>
-                        <p>お客様の状況を踏まえ、最適な解決策と費用をご提案いたします。</p>
+                        <h3>ご契約・着手</h3>
+                        <p>サービス内容と料金にご納得いただけましたら契約を締結し、具体的な手続きに着手いたします。</p>
                     </div>
                 </div>
-                <div class="flow-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>ご契約・業務開始</h3>
-                        <p>ご納得いただけましたら、正式にご契約し業務を開始いたします。</p>
-                    </div>
+                <div class="flow-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M5 12h14"/>
+                        <path d="m12 5 7 7-7 7"/>
+                    </svg>
                 </div>
-                <div class="flow-step">
-                    <div class="step-number">5</div>
+                <div class="flow-step fade-up">
+                    <div class="step-number">Step 4</div>
                     <div class="step-content">
-                        <h3>完了・アフターフォロー</h3>
-                        <p>業務完了後も、ご不明な点がございましたらお気軽にお声がけください。</p>
+                        <h3>問題解決</h3>
+                        <p>定期的に進捗をご報告しながら、最適な解決に向けて取り組みます。疑問があればいつでもお気軽にお尋ねください。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq">
+    <!-- よくある質問 -->
+    <section class="faq section" id="faq">
         <div class="container">
             <h2 class="section-title">よくある質問</h2>
             <div class="faq-list">
-                <div class="faq-item">
+                <div class="faq-item fade-up">
                     <div class="faq-question">
                         <h3>初回相談は本当に無料ですか？</h3>
-                        <span class="faq-toggle">+</span>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="faq-answer">
-                        <p>はい、初回相談（60分まで）は完全無料です。お気軽にご相談ください。ただし、2回目以降は1時間5,500円の相談料をいただいております。</p>
+                        <p>はい、初回相談は60分まで完全無料です。お悩みの内容をじっくりお聞きし、解決方針をご提案いたします。費用が発生するのは、具体的な手続きをご依頼いただく場合のみです。</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item fade-up">
                     <div class="faq-question">
-                        <h3>オンライン相談はどのように行いますか？</h3>
-                        <span class="faq-toggle">+</span>
+                        <h3>オンライン相談の方法を教えてください</h3>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="faq-answer">
-                        <p>Zoom、Google Meet、Skypeなど、お客様のご都合に合わせたツールでオンライン相談を実施いたします。事前にURLをお送りしますので、クリックするだけで簡単に参加いただけます。</p>
+                        <p>Zoom、Skype、Google Meetなど、お客様のご希望に合わせたツールを使用いたします。事前に接続テストも行いますので、ITに不慣れな方でも安心してご利用いただけます。</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item fade-up">
                     <div class="faq-question">
-                        <h3>全国対応とありますが、地方でも同じサービスを受けられますか？</h3>
-                        <span class="faq-toggle">+</span>
+                        <h3>夜間や休日の相談は可能ですか？</h3>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="faq-answer">
-                        <p>はい、オンライン相談により全国どちらにお住まいでも同等のサービスをご提供いたします。書類の受け渡しも郵送やメールで対応可能です。</p>
+                        <p>はい、可能です。平日20時まで、土日祝日も対応しております。お忙しい方のライフスタイルに合わせて柔軟に日程調整いたします。</p>
                     </div>
                 </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>急ぎの案件でも対応してもらえますか？</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>可能な限り対応いたします。まずはお電話でご相談ください。案件の内容と緊急度を確認の上、最短での対応方法をご提案いたします。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>費用の支払い方法を教えてください</h3>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>銀行振込、クレジットカード決済に対応しております。また、分割払いについてもご相談に応じますので、お気軽にお申し付けください。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
+                <div class="faq-item fade-up">
                     <div class="faq-question">
                         <h3>相談内容の秘密は守られますか？</h3>
-                        <span class="faq-toggle">+</span>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="faq-answer">
-                        <p>はい、職業上の守秘義務により、お客様の相談内容や個人情報は厳格に保護いたします。第三者に開示することは一切ございませんので、安心してご相談ください。</p>
+                        <p>もちろんです。法律により職業上の秘密保持義務が課せられており、お客様の個人情報・相談内容は厳格に管理いたします。安心してお話しください。</p>
                     </div>
                 </div>
-                <div class="faq-item">
+                <div class="faq-item fade-up">
                     <div class="faq-question">
-                        <h3>土日祝日の相談は可能ですか？</h3>
-                        <span class="faq-toggle">+</span>
+                        <h3>料金の支払い方法はどのようになりますか？</h3>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
                     </div>
                     <div class="faq-answer">
-                        <p>平日にお時間が取れない方のために、土日祝日の相談も承っております（要事前予約）。お客様のご都合に合わせて柔軟に対応いたします。</p>
+                        <p>銀行振込、現金でのお支払いが可能です。高額な案件については分割払いのご相談も承っております。お客様のご都合に合わせて柔軟に対応いたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <h3>どのようなエリアまで対応していますか？</h3>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>オンライン相談により全国対応が可能です。官公署での手続きが必要な場合も、可能な限りオンラインで完結するよう工夫し、お客様のご負担を軽減いたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-up">
+                    <div class="faq-question">
+                        <h3>相談前に準備しておくものはありますか？</h3>
+                        <button class="faq-toggle" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="faq-answer">
+                        <p>特別な準備は必要ありませんが、問題に関する書類（契約書、通知書等）があればご準備ください。時系列でメモを作成していただくと、より効率的な相談が可能です。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Access Section -->
-    <section class="access" id="access">
+    <!-- アクセス -->
+    <section class="access section">
         <div class="container">
-            <h2 class="section-title">アクセス・対応エリア</h2>
+            <h2 class="section-title">アクセス</h2>
             <div class="access-content">
-                <div class="access-info">
-                    <h3>全国対応のオンライン法務サービス</h3>
-                    <p>
-                        士業事務所「おーぷい」では、オンライン相談システムを活用することで、全国どちらにお住まいの方でもサービスをご利用いただけます。
-                    </p>
-                    <div class="access-features">
-                        <div class="access-feature">
-                            <i class="fas fa-globe"></i>
-                            <span>全国47都道府県対応</span>
+                <div class="access-info fade-up">
+                    <h3>全国対応可能です</h3>
+                    <p>オンライン相談システムにより、日本全国どこからでもご相談いただけます。</p>
+
+                    <div class="access-methods">
+                        <div class="method-item">
+                            <h4>オンライン相談</h4>
+                            <p>Zoom / Skype / Google Meet<br>お客様のご希望に合わせて選択可能</p>
                         </div>
-                        <div class="access-feature">
-                            <i class="fas fa-video"></i>
-                            <span>オンライン相談対応</span>
+                        <div class="method-item">
+                            <h4>お電話での相談</h4>
+                            <p>全国どこからでも<br>通話料無料でご相談可能</p>
                         </div>
-                        <div class="access-feature">
-                            <i class="fas fa-phone"></i>
-                            <span>電話相談対応</span>
-                        </div>
-                        <div class="access-feature">
-                            <i class="fas fa-envelope"></i>
-                            <span>メール・チャット対応</span>
+                        <div class="method-item">
+                            <h4>メール・チャット</h4>
+                            <p>24時間受付<br>お忙しい方にも安心</p>
                         </div>
                     </div>
                 </div>
-                <div class="access-map">
-                    <img src="https://placehold.co/500x300/9CAF88/FFFFFF?text=全国対応マップ" alt="全国対応エリア">
+                <div class="access-image fade-up">
+                    <div class="image-placeholder">
+                        <p>全国地図や<br>オンライン相談の<br>イメージ図</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- お知らせ・コラム -->
+    <section class="news section">
+        <div class="container">
+            <h2 class="section-title">お知らせ・コラム</h2>
+            <div class="news-grid">
+                <div class="news-card fade-up">
+                    <div class="news-date">2026.03.15</div>
+                    <div class="news-category">お知らせ</div>
+                    <h3><a href="#">春の法務相談キャンペーン実施中</a></h3>
+                    <p>3月〜5月限定で、初回相談時間を90分に延長してサービス提供中です。</p>
+                </div>
+                <div class="news-card fade-up">
+                    <div class="news-date">2026.03.10</div>
+                    <div class="news-category">コラム</div>
+                    <h3><a href="#">離婚時の財産分与で知っておきたい5つのポイント</a></h3>
+                    <p>離婚を検討されている方に向けて、財産分与の基本的な考え方をわかりやすく解説します。</p>
+                </div>
+                <div class="news-card fade-up">
+                    <div class="news-date">2026.03.05</div>
+                    <div class="news-category">コラム</div>
+                    <h3><a href="#">遺言書は自分で書ける？公正証書遺言との違い</a></h3>
+                    <p>遺言書の種類と特徴、それぞれのメリット・デメリットについて詳しく説明します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お問い合わせ -->
+    <section class="contact section" id="contact">
         <div class="container">
             <h2 class="section-title">お問い合わせ</h2>
-            <p class="section-subtitle">お気軽にご相談ください。初回相談は無料です。</p>
+            <p class="section-subtitle">まずはお気軽にお悩みをお聞かせください</p>
 
             <div class="contact-methods">
-                <div class="contact-method">
+                <div class="contact-method fade-up">
                     <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
                     </div>
-                    <h3>お電話でのご相談</h3>
-                    <p class="contact-number">0120-000-000</p>
-                    <p class="contact-hours">受付時間：平日 9:00-18:00</p>
+                    <h3>お電話</h3>
+                    <p class="contact-detail">0120-XXX-XXX</p>
+                    <p class="contact-note">受付時間：平日9:00〜20:00 / 土日祝9:00〜17:00</p>
                 </div>
-                <div class="contact-method">
+                <div class="contact-method fade-up">
                     <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
                     </div>
-                    <h3>メールでのご相談</h3>
-                    <p class="contact-email">hatachi.keibu@gmail.com</p>
-                    <p class="contact-hours">24時間受付（返信は営業時間内）</p>
-                </div>
-                <div class="contact-method">
-                    <div class="contact-icon">
-                        <i class="fab fa-line"></i>
-                    </div>
-                    <h3>LINEでのご相談</h3>
-                    <a href="#" class="btn btn-line">LINE友達追加</a>
-                    <p class="contact-hours">24時間受付</p>
+                    <h3>メール</h3>
+                    <p class="contact-detail">hatachi.keibu@gmail.com</p>
+                    <p class="contact-note">24時間受付　原則24時間以内にご返信</p>
                 </div>
             </div>
 
-            <div class="contact-form-section">
+            <div class="contact-form-container fade-up">
                 <h3>お問い合わせフォーム</h3>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/hatachi.keibu@gmail.com" method="post">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">お名前 <span class="required">*</span></label>
@@ -542,139 +631,109 @@
                             <input type="tel" id="phone" name="phone">
                         </div>
                         <div class="form-group">
-                            <label for="category">相談内容 <span class="required">*</span></label>
-                            <select id="category" name="category" required>
+                            <label for="consultation">希望相談方法</label>
+                            <select id="consultation" name="consultation">
                                 <option value="">選択してください</option>
-                                <option value="real-estate">不動産関連</option>
-                                <option value="inheritance">相続・家族</option>
-                                <option value="corporate">会社設立・法人</option>
-                                <option value="contract">契約書作成</option>
-                                <option value="debt">債務整理</option>
-                                <option value="other">その他</option>
+                                <option value="online">オンライン相談</option>
+                                <option value="phone">電話相談</option>
+                                <option value="email">メール相談</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="message">ご相談内容 <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="5" placeholder="お悩みの内容を詳しくお聞かせください" required></textarea>
+                        <label for="subject">相談分野 <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">選択してください</option>
+                            <option value="divorce">離婚・家事事件</option>
+                            <option value="inheritance">相続・遺言</option>
+                            <option value="labor">労働問題</option>
+                            <option value="contract">契約書作成・確認</option>
+                            <option value="debt">債権回収</option>
+                            <option value="other">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">相談内容 <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="お悩みの内容を具体的にお書きください。秘密は厳守いたします。" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="checkbox-label">
                             <input type="checkbox" name="privacy" required>
                             <span class="checkmark"></span>
-                            <a href="#privacy" target="_blank">プライバシーポリシー</a>に同意する
+                            <a href="#privacy" target="_blank" rel="noopener">プライバシーポリシー</a>に同意する
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-large">
-                        <i class="fas fa-paper-plane"></i>
-                        送信する
-                    </button>
+                    <button type="submit" class="submit-button">無料相談を申し込む</button>
                 </form>
             </div>
-        </div>
-    </section>
 
-    <!-- News Section -->
-    <section class="news">
-        <div class="container">
-            <h2 class="section-title">コラム・お知らせ</h2>
-            <div class="news-grid">
-                <article class="news-item">
-                    <div class="news-date">2024.03.15</div>
-                    <div class="news-category">コラム</div>
-                    <h3>初めての不動産購入で注意すべきポイント</h3>
-                    <p>不動産購入は人生の大きな買い物。特に初めての方が気をつけるべきポイントについて解説します。</p>
-                </article>
-                <article class="news-item">
-                    <div class="news-date">2024.03.10</div>
-                    <div class="news-category">お知らせ</div>
-                    <h3>春の無料相談キャンペーン開始</h3>
-                    <p>3月〜5月限定で、2回目の相談も無料でご利用いただけるキャンペーンを実施いたします。</p>
-                </article>
-                <article class="news-item">
-                    <div class="news-date">2024.03.05</div>
-                    <div class="news-category">コラム</div>
-                    <h3>相続手続きの基本的な流れ</h3>
-                    <p>相続が発生した際に必要な手続きについて、時系列でわかりやすく説明いたします。</p>
-                </article>
-                <article class="news-item">
-                    <div class="news-date">2024.02.28</div>
-                    <div class="news-category">コラム</div>
-                    <h3>若い女性におすすめの法的備え</h3>
-                    <p>将来に向けて今から準備しておきたい法的な手続きについてご紹介します。</p>
-                </article>
-            </div>
-            <div class="news-more">
-                <a href="#" class="btn btn-outline">もっと見る</a>
+            <div class="sns-links fade-up">
+                <h3>SNSでもつながってください</h3>
+                <div class="sns-buttons">
+                    <a href="#" class="sns-button instagram" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="m16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                        Instagram
+                    </a>
+                    <a href="#" class="sns-button line" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-.99.53-1.42.52-.47-.01-1.37-.27-2.04-.49-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49.99-.74 3.88-1.69 6.47-2.8 7.77-3.35 3.7-1.55 4.47-1.82 4.97-1.83.11 0 .36.03.52.17.13.12.17.28.19.39-.01.11.02.36-.01.51z"/>
+                        </svg>
+                        LINE公式
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- フッター -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-main">
                     <div class="footer-logo">
-                        <img src="https://placehold.co/150x50/9CAF88/FFFFFF?text=おーぷい" alt="おーぷい">
+                        <h3>士業事務所おーぷい</h3>
+                        <p>女性に寄り添う法務サービス</p>
                     </div>
-                    <p class="footer-description">
-                        士業事務所「おーぷい」は、若い女性の皆様を中心に全国対応の法務サービスを提供しています。
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-line"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>サービス</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services">不動産関連</a></li>
-                        <li><a href="#services">家族・相続</a></li>
-                        <li><a href="#services">会社設立・法人</a></li>
-                        <li><a href="#services">契約書作成</a></li>
-                        <li><a href="#services">債務整理</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>情報</h3>
-                    <ul class="footer-links">
-                        <li><a href="#about">事務所について</a></li>
-                        <li><a href="#pricing">料金</a></li>
-                        <li><a href="#faq">よくある質問</a></li>
-                        <li><a href="#contact">お問い合わせ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>お問い合わせ</h3>
                     <div class="footer-contact">
-                        <p><i class="fas fa-phone"></i> 0120-000-000</p>
-                        <p><i class="fas fa-envelope"></i> hatachi.keibu@gmail.com</p>
-                        <p><i class="fas fa-clock"></i> 平日 9:00-18:00</p>
+                        <h4>お問い合わせ</h4>
+                        <p>電話：0120-XXX-XXX</p>
+                        <p>メール：hatachi.keibu@gmail.com</p>
+                        <p>受付時間：平日9:00〜20:00 / 土日祝9:00〜17:00</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h4>サイトマップ</h4>
+                        <ul>
+                            <li><a href="#services">業務内容</a></li>
+                            <li><a href="#reasons">選ばれる理由</a></li>
+                            <li><a href="#pricing">料金</a></li>
+                            <li><a href="#about">代表挨拶</a></li>
+                            <li><a href="#faq">よくある質問</a></li>
+                            <li><a href="#contact">お問い合わせ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-legal">
+                        <h4>法的事項</h4>
+                        <ul>
+                            <li><a href="#privacy">プライバシーポリシー</a></li>
+                            <li><a href="#terms">利用規約</a></li>
+                            <li><a href="#legal">特定商取引法</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-legal">
-                    <a href="#privacy">プライバシーポリシー</a>
-                    <a href="#terms">利用規約</a>
-                    <a href="#sitemap">サイトマップ</a>
-                </div>
-                <p class="copyright">© 2024 士業事務所おーぷい. All rights reserved.</p>
+                <p>&copy; 2026 士業事務所おーぷい. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>

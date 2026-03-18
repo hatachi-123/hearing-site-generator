@@ -1,0 +1,402 @@
+/* アニメーション CSS（CLAUDE.md技法リファレンス準拠） */
+
+/* Scroll-triggered Animation（技法①） */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.fade-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger効果用の遅延クラス */
+.fade-up:nth-child(1) { transition-delay: 0.1s; }
+.fade-up:nth-child(2) { transition-delay: 0.2s; }
+.fade-up:nth-child(3) { transition-delay: 0.3s; }
+.fade-up:nth-child(4) { transition-delay: 0.4s; }
+.fade-up:nth-child(5) { transition-delay: 0.5s; }
+.fade-up:nth-child(6) { transition-delay: 0.6s; }
+
+/* フェードイン（左から） */
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.6s ease;
+}
+
+.fade-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* フェードイン（右から） */
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.6s ease;
+}
+
+.fade-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* スケールアニメーション */
+.scale-up {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s ease;
+}
+
+.scale-up.animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Micro Animation（技法⑨） - ボタンホバー効果 */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-main));
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.cta-button:hover::before {
+  transform: translateY(0);
+}
+
+.cta-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* リンク下線アニメーション */
+.nav-list a {
+  position: relative;
+}
+
+.nav-list a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-main);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-list a:hover::after {
+  transform: scaleX(1);
+  width: 100%;
+}
+
+/* カードホバーエフェクト */
+.problem-card,
+.service-card,
+.case-card,
+.pricing-card,
+.news-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problem-card:hover,
+.service-card:hover,
+.case-card:hover,
+.pricing-card:hover,
+.news-card:hover {
+  transform: translateY(-6px);
+}
+
+/* フォームフィールドフォーカス効果 */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  transform: translateY(-2px);
+}
+
+/* フローステップホバー効果 */
+.flow-step {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flow-step:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* ロゴアニメーション */
+.logo h1 {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.logo:hover h1 {
+  transform: scale(1.05);
+  color: var(--color-accent);
+}
+
+/* アイコン回転効果 */
+.contact-icon,
+.problem-icon,
+.service-icon {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-method:hover .contact-icon,
+.problem-card:hover .problem-icon,
+.service-card:hover .service-icon {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* FAQ トグルアニメーション */
+.faq-toggle {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-toggle[aria-expanded="true"] {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+.faq-answer {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-answer.active {
+  opacity: 1;
+  max-height: 200px;
+  padding: 0 2rem 1.5rem;
+}
+
+/* Wave アニメーション */
+.wave-divider {
+  animation: wave-float 6s ease-in-out infinite;
+}
+
+@keyframes wave-float {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+
+/* パルスアニメーション（CTA用） */
+.hero-cta {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(139, 154, 127, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(139, 154, 127, 0.5);
+  }
+}
+
+/* 数字カウンターエフェクト（選ばれる理由） */
+.reason-number {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(-90deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* ローディング状態のスケルトン */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--color-light) 25%,
+    var(--color-base) 50%,
+    var(--color-light) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* スムーススクロール強化 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* フォーカス可視化 */
+*:focus-visible {
+  outline: 2px solid var(--color-main);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 画像の遅延ロード効果 */
+.image-placeholder {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 75%);
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* スクロール進行インジケーター */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-main), var(--color-accent));
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* パフォーマンス最適化 */
+.cta-button,
+.problem-card,
+.service-card,
+.case-card,
+.pricing-card,
+.news-card,
+.flow-step,
+.faq-question {
+  will-change: transform;
+}
+
+/* ホバー後の最適化 */
+.problem-card:not(:hover),
+.service-card:not(:hover),
+.case-card:not(:hover),
+.pricing-card:not(:hover),
+.news-card:not(:hover) {
+  will-change: auto;
+}
+
+/* タッチデバイス用の調整 */
+@media (hover: none) and (pointer: coarse) {
+  .cta-button:hover,
+  .problem-card:hover,
+  .service-card:hover,
+  .case-card:hover,
+  .pricing-card:hover,
+  .news-card:hover,
+  .flow-step:hover {
+    transform: none;
+  }
+
+  .contact-method:hover .contact-icon,
+  .problem-card:hover .problem-icon,
+  .service-card:hover .service-icon {
+    transform: none;
+  }
+
+  /* タッチ時のフィードバック */
+  .cta-button:active,
+  .problem-card:active,
+  .service-card:active,
+  .case-card:active,
+  .pricing-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+  .fade-up,
+  .fade-left,
+  .fade-right,
+  .scale-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* アニメーション無効化設定（技法リファレンス準拠） */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-up,
+  .fade-left,
+  .fade-right,
+  .scale-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .wave-divider {
+    animation: none !important;
+  }
+
+  .hero-cta {
+    animation: none !important;
+  }
+
+  .skeleton {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
+}
