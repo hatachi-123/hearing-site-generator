@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 | 介護施設あおやま | 料金・サービス・手続きについて</title>
+    <meta name="description" content="あおやまによくお寄せいただく質問をカテゴリ別にまとめました。料金・サービス内容・利用手続きなどでご不明な点がございましたらこちらをご確認ください。">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <style>
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--color-base);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .faq-question:hover {
+            background: rgba(123, 132, 113, 0.1);
+        }
+
+        .faq-question.active {
+            background: var(--color-main);
+            color: white;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            border: 2px solid currentColor;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 2rem 1.5rem;
+            line-height: 1.8;
+        }
+
+        .category-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-nav button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--color-main);
+            background: transparent;
+            color: var(--color-main);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .category-nav button.active,
+        .category-nav button:hover {
+            background: var(--color-main);
+            color: white;
+        }
+
+        .faq-search {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .faq-search input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid rgba(123, 132, 113, 0.2);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: var(--font-body);
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--color-main);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: var(--color-main);
+        }
+
+        @media (max-width: 768px) {
+            .category-nav {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .category-nav button {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="color: inherit;">介護施設あおやま</a>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html#about">私たちについて</a></li>
+                        <li><a href="index.html#services">サービス</a></li>
+                        <li><a href="facility.html">施設紹介</a></li>
+                        <li><a href="services.html">詳細・料金</a></li>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact.html">お問い合わせ</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html#about">私たちについて</a></li>
+                <li><a href="index.html#services">サービス</a></li>
+                <li><a href="facility.html">施設紹介</a></li>
+                <li><a href="services.html">詳細・料金</a></li>
+                <li><a href="faq.html">よくある質問</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="hero" style="min-height: 60vh; padding-top: 120px;">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>よくある質問</h1>
+                <p class="subtitle">皆様からよくお寄せいただくご質問をまとめました</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Search -->
+            <div class="faq-search animate-on-scroll">
+                <input type="text" id="faq-search-input" placeholder="質問を検索...">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                </svg>
+            </div>
+
+            <!-- Category Navigation -->
+            <div class="category-nav animate-on-scroll">
+                <button class="active" data-category="all">すべて</button>
+                <button data-category="service">サービス内容</button>
+                <button data-category="pricing">料金について</button>
+                <button data-category="procedure">手続き・利用方法</button>
+                <button data-category="facility">施設・設備</button>
+                <button data-category="other">その他</button>
+            </div>
+
+            <!-- Service FAQs -->
+            <div class="faq-category" data-category="service">
+                <h2 class="animate-on-scroll" style="color: var(--color-main); margin-bottom: 2rem;">サービス内容について</h2>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>デイサービスはどのような活動をしますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>デイサービスでは、利用者様の身体状況や興味に合わせて様々な活動をご用意しております：</p>
+                            <ul>
+                                <li><strong>機能訓練：</strong>理学療法士による個別リハビリテーション</li>
+                                <li><strong>レクリエーション：</strong>音楽療法、手工芸、ゲーム、季節行事</li>
+                                <li><strong>入浴サービス：</strong>個浴・機械浴による安全な入浴介助</li>
+                                <li><strong>食事提供：</strong>管理栄養士監修の栄養バランスの取れた食事</li>
+                                <li><strong>社会交流：</strong>他の利用者様との談話やグループ活動</li>
+                            </ul>
+                            <p>一日のスケジュールは利用者様の体調や希望に合わせて柔軟に調整いたします。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>訪問介護ではどこまで対応してもらえますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>訪問介護では、以下のサービスを提供いたします：</p>
+                            <p><strong>身体介護：</strong></p>
+                            <ul>
+                                <li>入浴・清拭・部分浴介助</li>
+                                <li>排泄介助・おむつ交換</li>
+                                <li>食事介助・服薬介助</li>
+                                <li>着替え・整容介助</li>
+                                <li>移動・外出介助</li>
+                            </ul>
+                            <p><strong>生活援助：</strong></p>
+                            <ul>
+                                <li>掃除・洗濯・買い物・調理</li>
+                                <li>薬の受取り・書類作成補助</li>
+                                <li>季節衣類の入れ替え</li>
+                                <li>電球交換・簡易修繕</li>
+                            </ul>
+                            <p>※医療行為や家族のための家事、金銭管理等は対象外となります。詳しくはご相談ください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>緊急時の対応はどうなっていますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>あおやまでは24時間365日の緊急時対応体制を整えております：</p>
+                            <ul>
+                                <li><strong>デイサービス利用中：</strong>看護師が常駐し、提携医療機関と5分以内に連絡可能</li>
+                                <li><strong>訪問介護利用時：</strong>緊急時はすぐに事業所に連絡、必要に応じて駆けつけ</li>
+                                <li><strong>夜間・休日：</strong>緊急連絡先（090-1234-5678）にて24時間対応</li>
+                                <li><strong>医療的緊急事態：</strong>まず119番通報、その後当施設に連絡をお願いします</li>
+                            </ul>
+                            <p>姫路市内7つの医療機関と提携しており、迅速な医療連携が可能です。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing FAQs -->
+            <div class="faq-category" data-category="pricing">
+                <h2 class="animate-on-scroll" style="color: var(--color-main); margin-bottom: 2rem;">料金について</h2>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>介護保険はどのように適用されますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>介護保険制度により、以下の自己負担割合となります：</p>
+                            <ul>
+                                <li><strong>1割負担：</strong>年収280万円未満の方</li>
+                                <li><strong>2割負担：</strong>年収280万円以上340万円未満の方</li>
+                                <li><strong>3割負担：</strong>年収340万円以上の方</li>
+                            </ul>
+                            <p>負担割合は介護保険証に記載されております。また、月額利用料の上限額（高額介護サービス費）もございますので、詳しくは市区町村または当施設までお問い合わせください。</p>
+                            <p><strong>居宅介護支援（ケアプラン作成）は自己負担0円</strong>で利用いただけます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>デイサービスの実費負担はいくらですか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>デイサービスでは介護保険適用分に加え、以下の実費をご負担いただきます：</p>
+                            <ul>
+                                <li><strong>昼食代：</strong>550円（管理栄養士監修の食事）</li>
+                                <li><strong>おやつ代：</strong>100円（手作りおやつまたは季節の和菓子）</li>
+                                <li><strong>入浴介助加算：</strong>50円（入浴をご利用の場合）</li>
+                                <li><strong>個別機能訓練加算：</strong>85円（理学療法士による個別訓練）</li>
+                                <li><strong>送迎費：</strong>無料（姫路市内片道30分圏内）</li>
+                            </ul>
+                            <p>月額の概算費用については、ご利用予定の回数に応じて個別にお見積もりいたします。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>キャンセル料はかかりますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>キャンセルについては以下のとおりです：</p>
+                            <ul>
+                                <li><strong>デイサービス：</strong>前日17:00までのキャンセルは無料</li>
+                                <li><strong>訪問介護：</strong>2時間前までのキャンセルは無料</li>
+                                <li><strong>当日キャンセル：</strong>基本料金の50%</li>
+                                <li><strong>無断キャンセル：</strong>基本料金の100%</li>
+                            </ul>
+                            <p><strong>ただし、体調不良や緊急事態の場合はこの限りではありません。</strong>利用者様の体調を最優先に考えますので、お気軽にご連絡ください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Procedure FAQs -->
+            <div class="faq-category" data-category="procedure">
+                <h2 class="animate-on-scroll" style="color: var(--color-main); margin-bottom: 2rem;">手続き・利用方法について</h2>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>利用開始までにはどのくらいの期間が必要ですか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>通常、初回相談から利用開始まで約2-3週間程度を要します：</p>
+                            <ol>
+                                <li><strong>初回相談・見学：</strong>即日〜3営業日以内</li>
+                                <li><strong>アセスメント訪問：</strong>見学後1週間以内</li>
+                                <li><strong>ケアプラン作成：</strong>3-5営業日</li>
+                                <li><strong>契約手続き：</strong>1-2営業日</li>
+                                <li><strong>利用開始：</strong>契約後1週間以内</li>
+                            </ol>
+                            <p><strong>緊急性の高いケース</strong>（退院直後、介護者の急病等）については、最短3営業日でのサービス開始も可能です。まずはお電話でご相談ください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>要介護認定を受けていませんが相談できますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>はい、要介護認定を受けていない方もご相談いただけます。</p>
+                            <p><strong>当施設でサポートできること：</strong></p>
+                            <ul>
+                                <li>要介護認定申請の手続きサポート</li>
+                                <li>認定調査への立ち会い</li>
+                                <li>認定結果後のケアプラン作成</li>
+                                <li>各種サービス事業者との連携</li>
+                            </ul>
+                            <p><strong>申請から認定まで：</strong>通常30日程度（最長60日）かかりますが、この間も相談や情報提供は可能です。</p>
+                            <p>認定前でも介護に関するお悩みやご不安について、お気軽にご相談ください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>利用にあたって必要な書類は何ですか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>ご契約時に以下の書類をご準備ください：</p>
+                            <p><strong>必須書類：</strong></p>
+                            <ul>
+                                <li>介護保険証（原本）</li>
+                                <li>負担割合証（原本）</li>
+                                <li>健康保険証（コピー可）</li>
+                                <li>本人確認書類（免許証、マイナンバーカード等）</li>
+                                <li>印鑑（認印可）</li>
+                            </ul>
+                            <p><strong>あると良い書類：</strong></p>
+                            <ul>
+                                <li>お薬手帳・服薬情報</li>
+                                <li>主治医からの診療情報提供書</li>
+                                <li>既往歴・アレルギー等の医療情報</li>
+                                <li>緊急連絡先一覧</li>
+                            </ul>
+                            <p>書類の準備についてもサポートいたしますので、ご不明な点はお気軽にお尋ねください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facility FAQs -->
+            <div class="faq-category" data-category="facility">
+                <h2 class="animate-on-scroll" style="color: var(--color-main); margin-bottom: 2rem;">施設・設備について</h2>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>駐車場はありますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>はい、利用者様専用の駐車場を15台分ご用意しております：</p>
+                            <ul>
+                                <li><strong>駐車料金：</strong>無料</li>
+                                <li><strong>利用時間：</strong>8:00〜18:00</li>
+                                <li><strong>車椅子対応：</strong>身体障害者用駐車スペース2台</li>
+                                <li><strong>大型車両：</strong>福祉車両・大型車対応可</li>
+                                <li><strong>送迎車用：</strong>専用スペース3台確保</li>
+                            </ul>
+                            <p>満車の場合は、隣接する提携駐車場（徒歩1分）もご利用いただけます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>感染症対策はどのようになっていますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>利用者様の安全のため、徹底した感染症対策を実施しております：</p>
+                            <p><strong>設備面：</strong></p>
+                            <ul>
+                                <li>24時間換気システム・空気清浄機設置</li>
+                                <li>各所に手指消毒液配置</li>
+                                <li>非接触型体温計・血中酸素濃度測定器完備</li>
+                                <li>食事用パーティション設置</li>
+                            </ul>
+                            <p><strong>運用面：</strong></p>
+                            <ul>
+                                <li>全スタッフの健康チェック・マスク着用</li>
+                                <li>利用者様の体温測定・体調確認</li>
+                                <li>テーブル・手すり等の定期消毒</li>
+                                <li>感染症発生時の迅速な報告・対応体制</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other FAQs -->
+            <div class="faq-category" data-category="other">
+                <h2 class="animate-on-scroll" style="color: var(--color-main); margin-bottom: 2rem;">その他</h2>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>家族の面会はできますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>はい、ご家族の面会を歓迎しております：</p>
+                            <ul>
+                                <li><strong>面会時間：</strong>平日 9:00〜17:00、土曜 9:00〜12:00</li>
+                                <li><strong>面会場所：</strong>デイルーム、談話室、中庭テラス</li>
+                                <li><strong>事前連絡：</strong>基本的に不要（緊急時を除く）</li>
+                                <li><strong>お食事：</strong>ご希望に応じて一緒にお食事いただけます（要予約・実費550円）</li>
+                            </ul>
+                            <p>感染症の流行状況により制限をお願いする場合がございますが、オンライン面会システムもご用意しております。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <button class="faq-question">
+                        <h3>持ち物に制限はありますか？</h3>
+                        <div class="faq-toggle">+</div>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>基本的に制限はございませんが、安全のため以下にご協力ください：</p>
+                            <p><strong>お持ちいただくもの：</strong></p>
+                            <ul>
+                                <li>常用薬（お薬手帳含む）</li>
+                                <li>着替え（必要に応じて）</li>
+                                <li>歯ブラシ・口腔ケア用品</li>
+                                <li>メガネ・補聴器等の必需品</li>
+                            </ul>
+                            <p><strong>お控えいただくもの：</strong></p>
+                            <ul>
+                                <li>貴重品（現金・貴金属・通帳等）</li>
+                                <li>刃物類・危険物</li>
+                                <li>食べ物（アレルギー対応のため）</li>
+                                <li>においの強いもの</li>
+                            </ul>
+                            <p>個人用ロッカーもご用意しておりますので、詳しくはご相談ください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="animate-on-scroll" style="background: var(--color-main); color: white; padding: 3rem 2rem; border-radius: var(--radius); text-align: center; margin-top: 4rem;">
+                <h2 style="color: white; margin-bottom: 1rem;">ご不明な点がございましたら</h2>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    上記以外にもご不明な点やご心配事がございましたら、<br>
+                    お気軽にお問い合わせください。専門スタッフが丁寧にお答えいたします。
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="tel:079-123-4567" class="btn" style="background: white; color: var(--color-main);">電話で相談<br><small>079-123-4567</small></a>
+                    <a href="contact.html" class="btn" style="background: var(--color-accent); color: white;">メールで相談</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-section">
+                        <h4>介護施設あおやま</h4>
+                        <p>〒670-0000<br>兵庫県姫路市青山町3-15-8</p>
+                        <p>TEL: <a href="tel:079-123-4567">079-123-4567</a><br>
+                        FAX: 079-123-4568</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>サービス</h4>
+                        <p><a href="services.html#day-service">デイサービス</a><br>
+                        <a href="services.html#home-care">訪問介護</a><br>
+                        <a href="services.html#care-management">居宅介護支援</a><br>
+                        <a href="facility.html">施設見学</a></p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>営業時間</h4>
+                        <p>平日: 8:00〜17:00<br>
+                        土曜: 8:00〜12:00<br>
+                        休業: 日祝・年末年始<br>
+                        <strong>緊急時: 24時間対応</strong></p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://line.me/R/ti/p/@aoyama-care" target="_blank" rel="noopener" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M19.11,2H4.89A2.84,2.84 0 0,0 2.11,4.89V14.22A2.84,2.84 0 0,0 4.89,17.11H8.44L12,22L15.56,17.11H19.11A2.84,2.84 0 0,0 21.89,14.22V4.89A2.84,2.84 0 0,0 19.11,2Z"/>
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener" class="social-link">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 介護施設あおやま All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Category filtering
+            const categoryButtons = document.querySelectorAll('.category-nav button');
+            const faqCategories = document.querySelectorAll('.faq-category');
+            const searchInput = document.getElementById('faq-search-input');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.dataset.category;
+
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Show/hide categories
+                    faqCategories.forEach(cat => {
+                        if (category === 'all' || cat.dataset.category === category) {
+                            cat.style.display = 'block';
+                        } else {
+                            cat.style.display = 'none';
+                        }
+                    });
+
+                    // Clear search
+                    searchInput.value = '';
+                });
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const faqItems = document.querySelectorAll('.faq-item');
+
+                if (searchTerm === '') {
+                    // Show all items in active category
+                    const activeCategory = document.querySelector('.category-nav button.active').dataset.category;
+                    faqCategories.forEach(cat => {
+                        cat.style.display = activeCategory === 'all' || cat.dataset.category === activeCategory ? 'block' : 'none';
+                    });
+                    faqItems.forEach(item => item.style.display = 'block');
+                } else {
+                    // Show all categories during search
+                    faqCategories.forEach(cat => cat.style.display = 'block');
+
+                    // Filter items
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('h3').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
