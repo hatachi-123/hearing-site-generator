@@ -1,0 +1,191 @@
+/* スクロール連動アニメーション（TECH:①） */
+
+/* 基本フェードインアニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* スクロール連動クラス */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+              transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+
+.animate-on-scroll.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger（順次表示）効果 */
+.animate-on-scroll:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.animate-on-scroll:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+.animate-on-scroll:nth-child(3) {
+  transition-delay: 200ms;
+}
+
+.animate-on-scroll:nth-child(4) {
+  transition-delay: 300ms;
+}
+
+.animate-on-scroll:nth-child(5) {
+  transition-delay: 400ms;
+}
+
+.animate-on-scroll:nth-child(6) {
+  transition-delay: 500ms;
+}
+
+/* 特定の要素のバリエーション */
+.animate-on-scroll.slide-left {
+  transform: translateX(-40px);
+}
+
+.animate-on-scroll.slide-left.animate {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.slide-right {
+  transform: translateX(40px);
+}
+
+.animate-on-scroll.slide-right.animate {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.fade-only {
+  transform: none;
+}
+
+.animate-on-scroll.fade-only.animate {
+  transform: none;
+}
+
+/* ホバー時のマイクロアニメーション（TECH:⑨） */
+.problem-card:hover .problem-icon svg,
+.contact-method:hover .method-icon svg {
+  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+
+.menu-card:hover .menu-title {
+  color: var(--color-main);
+  transition: color 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-text::before {
+  color: var(--color-main);
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+.symptom-category:hover .category-title {
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+}
+
+/* フォーカス時のアニメーション */
+.form-input:focus,
+.form-textarea:focus {
+  transform: scale(1.02);
+}
+
+/* 画像のホバー効果 */
+.hero-image img,
+.features-image img,
+.facility-image-main img,
+.facility-image-sub img,
+.staff-image img {
+  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+
+.hero-image:hover img,
+.features-image:hover img,
+.facility-image-main:hover img,
+.facility-image-sub:hover img,
+.staff-image:hover img {
+  transform: scale(1.05);
+}
+
+/* ロード時のアニメーション */
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-image img {
+  animation: fadeInRight 1s ease-out 0.3s both;
+}
+
+/* prefers-reduced-motion 対応 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .animate-on-scroll.animate,
+  .animate-on-scroll.slide-left,
+  .animate-on-scroll.slide-left.animate,
+  .animate-on-scroll.slide-right,
+  .animate-on-scroll.slide-right.animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-text,
+  .hero-image img {
+    animation: none !important;
+  }
+
+  .problem-card:hover .problem-icon svg,
+  .contact-method:hover .method-icon svg,
+  .hero-image:hover img,
+  .features-image:hover img,
+  .facility-image-main:hover img,
+  .facility-image-sub:hover img,
+  .staff-image:hover img {
+    transform: none !important;
+  }
+}

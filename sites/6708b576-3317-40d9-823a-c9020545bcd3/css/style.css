@@ -1,0 +1,1171 @@
+/* CSS変数定義 */
+:root {
+  --color-base:      #F8F9FA;
+  --color-main:      #2E7D8A;
+  --color-accent:    #E8A547;
+  --color-text:      #2C2C2C;
+  --font-heading:    'Noto Sans JP', sans-serif;
+  --font-body:       'Noto Sans JP', sans-serif;
+  --radius:          12px;
+  --section-padding: 80px;
+  --max-width:       1200px;
+  --transition:      all 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* リセットCSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 16px;
+  background-color: #FFFFFF;
+}
+
+/* prefers-reduced-motion 対応 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 共通クラス */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-padding {
+  padding: var(--section-padding) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #666666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ボタンスタイル（マイクロアニメーション適用） */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition);
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  z-index: -1;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background-color: var(--color-main);
+  color: white;
+}
+
+.btn-primary:hover::before {
+  transform: translateY(0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(46, 125, 138, 0.3);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--color-main);
+  border-color: var(--color-main);
+}
+
+.btn-secondary::before {
+  background: var(--color-main);
+}
+
+.btn-secondary:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(46, 125, 138, 0.2);
+}
+
+.btn-secondary:hover::before {
+  transform: translateY(0);
+}
+
+.btn-line {
+  background-color: #06C755;
+  color: white;
+}
+
+.btn-line::before {
+  background: #05A747;
+}
+
+.btn-line:hover::before {
+  transform: translateY(0);
+}
+
+.btn-line:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(6, 199, 85, 0.3);
+}
+
+/* ヘッダー */
+.header {
+  background-color: white;
+  padding: 16px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo h1 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-phone {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.btn-phone:hover {
+  background-color: #D49437;
+  transform: translateY(-2px);
+}
+
+/* ヒーローセクション */
+.hero {
+  margin-top: 80px;
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--color-base) 0%, #E8F4F5 100%);
+}
+
+.hero-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-text {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  margin-bottom: 24px;
+}
+
+.hero-title-main {
+  display: block;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: var(--color-main);
+  line-height: 1.2;
+}
+
+.hero-title-sub {
+  display: block;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-top: 8px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #666666;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-image {
+  position: relative;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  animation: fadeInRight 1s ease-out 0.3s both;
+}
+
+/* お悩みセクション */
+.problems {
+  background-color: white;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.problem-card {
+  background: white;
+  padding: 40px 32px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  transition: var(--transition);
+  border: 1px solid #f0f0f0;
+}
+
+.problem-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 60px rgba(0,0,0,0.12);
+}
+
+.problem-icon {
+  margin-bottom: 24px;
+}
+
+.problem-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.problem-text {
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* 施術の特徴・強み */
+.features {
+  background-color: var(--color-base);
+}
+
+.features-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.feature-number {
+  background: var(--color-main);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.feature-text {
+  color: #666666;
+  line-height: 1.7;
+}
+
+.features-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+/* ウェーブセパレーター */
+.wave-separator,
+.wave-separator-reverse {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-separator svg,
+.wave-separator-reverse svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+/* 施術メニュー・料金表 */
+.menu {
+  background-color: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.menu-card {
+  background: white;
+  padding: 48px 32px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  transition: var(--transition);
+  border: 2px solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 60px rgba(0,0,0,0.12);
+}
+
+.menu-card.featured {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, #FFFBF7 0%, white 100%);
+}
+
+.menu-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--color-accent);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.menu-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 24px;
+}
+
+.menu-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.price-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+.price-unit {
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+
+.menu-time {
+  font-size: 1.125rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.menu-description {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.menu-features {
+  list-style: none;
+  text-align: left;
+}
+
+.menu-features li {
+  color: #666666;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.menu-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.menu-note {
+  text-align: center;
+  margin-top: 48px;
+  color: #666666;
+}
+
+.menu-note p {
+  margin-bottom: 8px;
+}
+
+/* 施術の流れ */
+.flow {
+  background-color: var(--color-base);
+}
+
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 32px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  transition: var(--transition);
+}
+
+.flow-step:hover {
+  transform: translateX(8px);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.1);
+}
+
+.step-number {
+  background: var(--color-main);
+  color: white;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.step-title {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.step-text {
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* 院内・施術室紹介 */
+.facility {
+  background-color: white;
+}
+
+.facility-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.facility-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.facility-image-main img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.facility-images-sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.facility-image-sub img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.facility-features {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.facility-feature h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.facility-feature p {
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* スタッフ紹介 */
+.staff {
+  background-color: var(--color-base);
+}
+
+.staff-profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.staff-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.staff-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.staff-title {
+  font-size: 1.125rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.staff-story {
+  margin-bottom: 48px;
+}
+
+.staff-story p {
+  color: #666666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.credentials-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.credentials-list {
+  list-style: none;
+}
+
+.credentials-list li {
+  color: #666666;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.credentials-list li:last-child {
+  border-bottom: none;
+}
+
+.credentials-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--color-main);
+}
+
+/* お客様の声 */
+.testimonials {
+  background-color: white;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 40px 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  transition: var(--transition);
+  border-left: 4px solid var(--color-accent);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 60px rgba(0,0,0,0.12);
+}
+
+.testimonial-text {
+  color: #666666;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-style: italic;
+  position: relative;
+  padding-left: 20px;
+}
+
+.testimonial-text::before {
+  content: '"';
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-size: 3rem;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.author-condition {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* 対応症状一覧 */
+.symptoms {
+  background-color: var(--color-base);
+}
+
+.symptoms-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.symptom-category {
+  background: white;
+  padding: 40px 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  transition: var(--transition);
+}
+
+.symptom-category:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.1);
+}
+
+.category-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-main);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.symptom-list {
+  list-style: none;
+}
+
+.symptom-list li {
+  color: #666666;
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.symptom-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.symptoms-note {
+  text-align: center;
+  margin-top: 48px;
+  color: #666666;
+}
+
+/* アクセス・営業時間 */
+.access {
+  background-color: white;
+}
+
+.access-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.info-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 32px;
+}
+
+.info-item {
+  margin-bottom: 24px;
+}
+
+.info-item h4 {
+  font-weight: 600;
+  color: var(--color-main);
+  margin-bottom: 8px;
+}
+
+.info-item p {
+  color: #666666;
+  line-height: 1.6;
+}
+
+.phone-link {
+  color: var(--color-main);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.phone-link:hover {
+  color: var(--color-accent);
+}
+
+.schedule-table {
+  background: var(--color-base);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.schedule-row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.schedule-row:last-child {
+  border-bottom: none;
+}
+
+.schedule-row.holiday {
+  background: #f5f5f5;
+}
+
+.schedule-day,
+.schedule-time {
+  padding: 16px 20px;
+}
+
+.schedule-day {
+  font-weight: 600;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.schedule-time {
+  color: #666666;
+  flex: 1.5;
+}
+
+.schedule-note {
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+.access-map {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+/* 予約導線 */
+.contact {
+  background-color: var(--color-base);
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.contact-method {
+  background: white;
+  padding: 48px 32px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+  transition: var(--transition);
+}
+
+.contact-method:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 60px rgba(0,0,0,0.12);
+}
+
+.method-icon {
+  margin-bottom: 24px;
+}
+
+.method-title {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 16px;
+}
+
+.method-description {
+  color: #666666;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.method-note {
+  font-size: 0.875rem;
+  color: #999999;
+  margin-top: 16px;
+}
+
+/* お問い合わせフォーム */
+.contact-form-section {
+  background: white;
+  padding: 60px 48px;
+  border-radius: 20px;
+  box-shadow: 0 12px 50px rgba(0,0,0,0.08);
+}
+
+.form-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 32px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.required {
+  color: var(--color-accent);
+  margin-left: 4px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-main);
+  box-shadow: 0 0 0 3px rgba(46, 125, 138, 0.1);
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 1.125rem;
+}
+
+/* フッター */
+.footer {
+  background-color: var(--color-text);
+  color: white;
+  padding: 60px 0 20px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.footer-address {
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.footer-address a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.footer-subtitle {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer-hours p {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #cccccc;
+  text-decoration: none;
+  margin-bottom: 16px;
+  transition: var(--transition);
+}
+
+.social-link:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444444;
+  color: #999999;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 60px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 20px;
+  }
+
+  .nav {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    margin-top: 120px;
+    padding: 60px 0;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features-content,
+  .facility-content,
+  .staff-profile,
+  .access-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .facility-images-sub {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-step {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-form-section {
+    padding: 40px 24px;
+  }
+
+  .problems-grid,
+  .menu-grid,
+  .symptoms-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+}
