@@ -1,9 +1,16 @@
 name: Generate Site with Claude Code
 
 on:
-  push:
-    paths:
-      - 'prompts/**'
+  workflow_dispatch:
+    inputs:
+      session_id:
+        description: 'Session ID for site generation'
+        required: true
+        type: string
+
+concurrency:
+  group: generate-site-${{ github.event.inputs.session_id }}
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -14,30 +21,22 @@ jobs:
       API_BASE: https://hearing-api.hab-tech.net
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
-      - name: Extract session info from pushed file
+      - name: Set session info
         id: session
         run: |
-          # pushされたコミットの差分からプロンプトファイルを特定する
-          PROMPT_FILE=$(git diff --name-only HEAD~1 HEAD -- 'prompts/*.md' | head -1)
-          
-          if [ -z "$PROMPT_FILE" ]; then
-            echo "::error::No prompt file found in the latest commit"
-            exit 1
-          fi
-          
-          echo "Found prompt file: $PROMPT_FILE"
-          SESSION_ID=$(basename "$PROMPT_FILE" .md)
-          PROMPT_CONTENT=$(cat "$PROMPT_FILE")
+          SESSION_ID="${{ github.event.inputs.session_id }}"
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
+          PROMPT_FILE="prompts/${SESSION_ID}.md"
           echo "prompt_file=$PROMPT_FILE" >> $GITHUB_OUTPUT
-          echo "prompt_content<<PROMPT_DELIM" >> $GITHUB_OUTPUT
-          echo "$PROMPT_CONTENT" >> $GITHUB_OUTPUT
-          echo "PROMPT_DELIM" >> $GITHUB_OUTPUT
           SHORT_ID=$(echo "$SESSION_ID" | cut -c1-8)
           echo "project_name=draft-${SHORT_ID}" >> $GITHUB_OUTPUT
+
+          if [ ! -f "$PROMPT_FILE" ]; then
+            echo "::error::Prompt file not found: $PROMPT_FILE"
+            exit 1
+          fi
+          echo "Found prompt file: $PROMPT_FILE"
 
       - name: "Notify: site generation started"
         env:
@@ -63,7 +62,6 @@ jobs:
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
 
-          # プロンプトをファイル経由で渡す（シェル変数展開による破損を防止）
           cat "${{ steps.session.outputs.prompt_file }}" > /tmp/prompt_input.md
 
           claude -p "
@@ -94,7 +92,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "sites/$SESSION_ID/"
-          git commit -m "Generated site for session $SESSION_ID"
+          git commit -m "Generated site for session $SESSION_ID [skip ci]"
           git push
 
       - name: Deploy to Cloudflare Pages
