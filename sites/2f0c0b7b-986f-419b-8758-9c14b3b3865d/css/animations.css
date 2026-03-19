@@ -1,0 +1,322 @@
+/* Animation CSS */
+
+/* Fade Up Animation - Default State */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Animated State */
+.fade-up.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered Animation Delays */
+.fade-up:nth-child(1) { transition-delay: 0ms; }
+.fade-up:nth-child(2) { transition-delay: 100ms; }
+.fade-up:nth-child(3) { transition-delay: 200ms; }
+.fade-up:nth-child(4) { transition-delay: 300ms; }
+.fade-up:nth-child(5) { transition-delay: 400ms; }
+.fade-up:nth-child(6) { transition-delay: 500ms; }
+
+/* Parallax Elements */
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Sticky Section Background */
+.sticky-section {
+  position: relative;
+  background-attachment: fixed;
+}
+
+/* iOS Parallax Fix */
+@supports (-webkit-touch-callout: none) {
+  .sticky-section {
+    background-attachment: scroll;
+  }
+}
+
+/* Nav Animation */
+.nav {
+  transform: translateY(-100%);
+  animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideDown {
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Hero Content Animation */
+.hero-content > * {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: heroFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.3s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.5s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.7s; }
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Pulse Animation */
+.btn-primary {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+  }
+}
+
+/* Hover Animations */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Loading Animation for Images */
+.loading {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.loading.loaded {
+  opacity: 1;
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-main));
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* Text Reveal Animation */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.text-reveal.animated span {
+  transform: translateY(0);
+}
+
+/* Menu Item Hover Animation */
+.menu-item {
+  overflow: hidden;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.menu-item:hover::after {
+  left: 100%;
+}
+
+/* Gallery Item Zoom Animation */
+.gallery-item {
+  overflow: hidden;
+}
+
+.gallery-item img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Testimonial Card Float */
+.testimonial {
+  animation: float 6s ease-in-out infinite;
+}
+
+.testimonial:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.testimonial:nth-child(3) {
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Counter Animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter {
+  animation: countUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Wave Animation */
+.wave-separator svg path {
+  animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform-origin: center;
+}
+
+.wave-separator svg path:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.wave-separator svg path:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.wave-separator svg path:nth-child(3) {
+  animation-delay: 4s;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+/* SNS Icon Rotate */
+.sns-icon {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sns-link:hover .sns-icon {
+  transform: rotate(5deg) scale(1.1);
+}
+
+/* News Item Slide */
+.news-item {
+  transform: translateX(-20px);
+  opacity: 0;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.news-item.animated {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Footer Links Hover */
+.footer-links a {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-links a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: var(--color-main);
+  transition: left 0.3s ease;
+}
+
+.footer-links a:hover::before {
+  left: 0;
+}
+
+/* Mobile Specific Animations */
+@media (max-width: 767px) {
+  /* Reduce motion for mobile */
+  .parallax-element {
+    will-change: auto;
+  }
+
+  /* Simplified animations for mobile */
+  .fade-up:nth-child(n) {
+    transition-delay: 0ms;
+  }
+
+  /* Disable floating animation on mobile */
+  .testimonial {
+    animation: none;
+  }
+
+  /* Reduce button pulse on mobile */
+  .btn-primary {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .fade-up {
+    transition-duration: 0.3s;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .parallax-element {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .sticky-section {
+    background-attachment: scroll !important;
+  }
+}

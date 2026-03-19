@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おいしい酒場 - 姫路のアットホームな酒場 | はやい、やすい、うまい</title>
+    <meta name="description" content="姫路駅近くのアットホームな酒場「おいしい酒場」。毎日新鮮な刺身と手作り焼き鳥を17時からご提供。30代の働き盛りが気軽に楽しめる温かい雰囲気の居酒屋です。">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">おいしい酒場</div>
+            <div class="nav-links">
+                <a href="#concept">こだわり</a>
+                <a href="#menu">メニュー</a>
+                <a href="#gallery">雰囲気</a>
+                <a href="#access">アクセス</a>
+                <a href="#reservation" class="nav-cta">予約する</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション（Video Hero） -->
+    <section class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
+                <source src="images/hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-up">はやい、やすい、うまい。<br><span class="hero-subtitle">姫路のアットホームな酒場</span></h1>
+            <p class="hero-description fade-up">毎日17時から、姫路駅徒歩3分。新鮮な播州の地酒と手作り料理で今日の疲れを癒しませんか</p>
+            <div class="hero-buttons fade-up">
+                <a href="#reservation" class="btn btn-primary">今すぐ予約</a>
+                <a href="#menu" class="btn btn-secondary">メニューを見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンセプト・こだわりセクション -->
+    <section id="concept" class="concept sticky-section">
+        <div class="container">
+            <div class="concept-content">
+                <div class="concept-text">
+                    <h2 class="section-title fade-up">毎日通いたくなる、<br>姫路の心温まる酒場</h2>
+                    <div class="concept-description fade-up">
+                        <p>2019年の開店以来、地元姫路の皆さまに愛され続けている「おいしい酒場」。店主の田中が毎朝4時から仕入れる新鮮な播州の食材と、祖母から受け継いだ手作りの味で、働き盛りの皆さまをお迎えしています。</p>
+                        <p>カウンター8席、テーブル16席の小さな店内では、常連さん同士が自然と会話を始める温かい空間。一人でも、仲間とでも、気取らず本当に美味しいものを楽しんでいただけます。</p>
+                    </div>
+                    <div class="concept-features fade-up">
+                        <div class="feature">
+                            <h3>はやい</h3>
+                            <p>注文から5分以内でお出しする手際の良さ</p>
+                        </div>
+                        <div class="feature">
+                            <h3>やすい</h3>
+                            <p>ビール290円、焼き鳥1本90円からの安心価格</p>
+                        </div>
+                        <div class="feature">
+                            <h3>うまい</h3>
+                            <p>毎朝仕入れる新鮮食材と秘伝のタレ</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="concept-image parallax-element fade-up">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=800&fit=crop&crop=faces" alt="店主が丁寧に仕込みをする様子">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SVGウェーブ区切り -->
+    <div class="wave-separator">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="var(--color-main)"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="var(--color-main)"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="var(--color-main)"></path>
+        </svg>
+    </div>
+
+    <!-- メニュー・料金セクション -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">自慢のメニュー</h2>
+            <p class="section-subtitle text-center fade-up">毎朝4時から仕入れる新鮮食材の手作り料理</p>
+
+            <div class="menu-grid">
+                <!-- おすすめメニュー（大きめ） -->
+                <div class="menu-featured fade-up">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1610645730415-4bbe20bf58c6?w=600&h=400&fit=crop" alt="播州地鶏の炭火焼き">
+                    </div>
+                    <div class="menu-content">
+                        <h3>播州地鶏の炭火焼き</h3>
+                        <p class="menu-price">1本 150円</p>
+                        <p>兵庫県産の地鶏を毎朝仕入れ、備長炭で香ばしく焼き上げます。秘伝のタレは創業時から継ぎ足している自慢の味です。</p>
+                        <div class="menu-badge">店主おすすめ</div>
+                    </div>
+                </div>
+
+                <!-- 通常メニュー -->
+                <div class="menu-item fade-up">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=300&h=200&fit=crop" alt="明石産生しらす">
+                    </div>
+                    <div class="menu-content">
+                        <h3>明石産生しらす</h3>
+                        <p class="menu-price">580円</p>
+                        <p>午後に明石港から直送される新鮮な生しらす</p>
+                    </div>
+                </div>
+
+                <div class="menu-item fade-up">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=300&h=200&fit=crop" alt="手作り餃子">
+                    </div>
+                    <div class="menu-content">
+                        <h3>手作り餃子（6個）</h3>
+                        <p class="menu-price">390円</p>
+                        <p>毎日店内で包む自家製餃子</p>
+                    </div>
+                </div>
+
+                <div class="menu-item fade-up">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=300&h=200&fit=crop" alt="日本酒">
+                    </div>
+                    <div class="menu-content">
+                        <h3>播州の地酒各種</h3>
+                        <p class="menu-price">1合 450円〜</p>
+                        <p>龍力、奥播磨など地元の銘酒を豊富にご用意</p>
+                    </div>
+                </div>
+
+                <div class="menu-item fade-up">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-7bd4c1b9e50a?w=300&h=200&fit=crop" alt="肉じゃが">
+                    </div>
+                    <div class="menu-content">
+                        <h3>おばあちゃんの肉じゃが</h3>
+                        <p class="menu-price">480円</p>
+                        <p>祖母直伝の優しい味付けの手作り煮物</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-cta fade-up">
+                <p>この他にも季節の食材を使った限定メニューを多数ご用意しています</p>
+                <a href="#reservation" class="btn btn-primary">予約して詳しく見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 店舗の雰囲気・ギャラリーセクション -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">温かい店内の雰囲気</h2>
+            <p class="section-subtitle text-center fade-up">カウンター8席、テーブル16席のアットホームな空間</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-large parallax-element fade-up">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=600&fit=crop" alt="温かみのあるカウンター席">
+                    <div class="gallery-overlay">
+                        <h3>カウンター席</h3>
+                        <p>一人でも気軽にお楽しみいただけます</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item parallax-element fade-up">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop" alt="賑やかなテーブル席">
+                    <div class="gallery-overlay">
+                        <h3>テーブル席</h3>
+                        <p>仲間との楽しい時間に</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item parallax-element fade-up">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop" alt="店主と常連さんの会話">
+                    <div class="gallery-overlay">
+                        <h3>常連さんとの会話</h3>
+                        <p>自然と生まれる温かい交流</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お客様の声セクション -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">お客様の声</h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial fade-up">
+                    <div class="testimonial-content">
+                        <p>"仕事帰りに週3回は通っています。店主の田中さんとの会話も楽しみの一つ。焼き鳥は本当に絶品で、特にタレが最高です！"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>山田さん（38歳・会社員）</h4>
+                            <span>週3回のリピーター</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-up">
+                    <div class="testimonial-content">
+                        <p>"同僚と飲み会でよく利用します。料理が早く出てくるし、値段も手頃。何より雰囲気が良くて、みんなでワイワイ楽しめる場所です。"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>佐藤さん（33歳・営業職）</h4>
+                            <span>月2回の利用</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial fade-up">
+                    <div class="testimonial-content">
+                        <p>"一人で来ても居心地が良く、カウンターで他のお客さんとも自然に話せる雰囲気。手作りの肉じゃががお母さんの味みたいで懐かしいです。"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>田村さん（29歳・事務職）</h4>
+                            <span>月4回の利用</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アクセス・地図セクション -->
+    <section id="access" class="access">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">アクセス</h2>
+
+            <div class="access-content">
+                <div class="access-info fade-up">
+                    <div class="access-item">
+                        <h3>住所</h3>
+                        <p>兵庫県姫路市駅前町123-4 エトワールビル1F</p>
+                    </div>
+
+                    <div class="access-item">
+                        <h3>最寄駅</h3>
+                        <p>JR姫路駅 東口より徒歩3分<br>山陽姫路駅より徒歩5分</p>
+                    </div>
+
+                    <div class="access-item">
+                        <h3>駐車場</h3>
+                        <p>提携駐車場あり（2時間まで無料）<br>※お会計時にお申し付けください</p>
+                    </div>
+
+                    <div class="access-item">
+                        <h3>お問い合わせ</h3>
+                        <p>TEL: <a href="tel:079-123-4567">079-123-4567</a><br>
+                        Email: <a href="mailto:hatachi.keibu@gmail.com">hatachi.keibu@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="access-map fade-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.123456789!2d134.691234!3d34.826123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDQ5JzM0LjAiTiAxMzTCsDQxJzI4LjQiRQ!5e0!3m2!1sja!2sjp!4v1234567890123" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SVGウェーブ区切り -->
+    <div class="wave-separator wave-flip">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="var(--color-main)"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="var(--color-main)"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="var(--color-main)"></path>
+        </svg>
+    </div>
+
+    <!-- 営業時間・定休日セクション -->
+    <section class="hours">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">営業時間・定休日</h2>
+
+            <div class="hours-content">
+                <div class="hours-info fade-up">
+                    <div class="hours-item">
+                        <h3>営業時間</h3>
+                        <p class="hours-time">17:00 〜 24:00（L.O. 23:30）</p>
+                        <p class="hours-note">※日曜日は23:00まで（L.O. 22:30）</p>
+                    </div>
+
+                    <div class="hours-item">
+                        <h3>定休日</h3>
+                        <p>毎週火曜日<br>第3月曜日（仕入れ休み）</p>
+                    </div>
+
+                    <div class="hours-item">
+                        <h3>年末年始</h3>
+                        <p>12/30〜1/3 休業<br>※詳細はお電話でお問い合わせください</p>
+                    </div>
+                </div>
+
+                <div class="hours-calendar fade-up">
+                    <h4>今週の営業予定</h4>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">
+                            <span class="day-name">月</span>
+                            <span class="day-status open">営業</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">火</span>
+                            <span class="day-status closed">定休</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">水</span>
+                            <span class="day-status open">営業</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">木</span>
+                            <span class="day-status open">営業</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">金</span>
+                            <span class="day-status open">営業</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">土</span>
+                            <span class="day-status open">営業</span>
+                        </div>
+                        <div class="calendar-day">
+                            <span class="day-name">日</span>
+                            <span class="day-status open">23時</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 予約導線セクション -->
+    <section id="reservation" class="reservation">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">ご予約・お問い合わせ</h2>
+            <p class="section-subtitle text-center fade-up">お席の確保はお電話が確実です</p>
+
+            <div class="reservation-options">
+                <div class="reservation-option fade-up">
+                    <div class="option-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>お電話での予約</h3>
+                    <p class="option-phone">079-123-4567</p>
+                    <p>営業時間内にお電話ください<br>当日予約も承ります</p>
+                    <a href="tel:079-123-4567" class="btn btn-primary">電話をかける</a>
+                </div>
+
+                <div class="reservation-option fade-up">
+                    <div class="option-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 11H15M9 15H15M17 21V7C17 5.89543 16.1046 5 15 5H9C7.89543 5 7 5.89543 7 7V21L12 18L17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>オンライン予約</h3>
+                    <p class="option-link">ぐるなび予約サイト</p>
+                    <p>24時間受付可能<br>前日までのご予約におすすめ</p>
+                    <a href="https://r.gnavi.co.jp/example" target="_blank" rel="noopener" class="btn btn-secondary">ぐるなびで予約</a>
+                </div>
+            </div>
+
+            <div class="reservation-note fade-up">
+                <p><strong>※ご予約のお客様優先</strong><br>
+                特に金曜日・土曜日は混雑いたします。お席の確保はご予約がおすすめです。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNSフィードセクション -->
+    <section class="sns">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">SNS・最新情報</h2>
+
+            <div class="sns-links fade-up">
+                <a href="https://www.instagram.com/oishii_sakaba_himeji/" target="_blank" rel="noopener" class="sns-link">
+                    <div class="sns-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="m2 2 20 20" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="m18.5 5.5h.01" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="sns-info">
+                        <h3>Instagram</h3>
+                        <p>日替わりメニューや店内の様子を毎日更新</p>
+                    </div>
+                </a>
+
+                <a href="https://lin.ee/abcdefg" target="_blank" rel="noopener" class="sns-link">
+                    <div class="sns-icon">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 2.98.97 4.29L1 23l6.71-1.97C9.02 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="sns-info">
+                        <h3>LINE公式アカウント</h3>
+                        <p>限定クーポンやイベント情報をお届け</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- お知らせセクション -->
+    <section class="news">
+        <div class="container">
+            <h2 class="section-title text-center fade-up">お知らせ</h2>
+
+            <div class="news-list">
+                <div class="news-item fade-up">
+                    <span class="news-date">2026.03.15</span>
+                    <span class="news-category important">重要</span>
+                    <h3>春の歓送迎会プラン開始</h3>
+                    <p>3月16日より歓送迎会プラン（飲み放題2時間＋料理7品で3,500円）を開始いたします。ご予約はお電話にて承ります。</p>
+                </div>
+
+                <div class="news-item fade-up">
+                    <span class="news-date">2026.03.10</span>
+                    <span class="news-category menu">メニュー</span>
+                    <h3>桜鯛の刺身 期間限定登場</h3>
+                    <p>春の味覚、桜鯛の刺身を4月末まで限定でご提供いたします。この時期だけの上品な味わいをぜひお楽しみください。</p>
+                </div>
+
+                <div class="news-item fade-up">
+                    <span class="news-date">2026.03.01</span>
+                    <span class="news-category info">お知らせ</span>
+                    <h3>営業時間変更について</h3>
+                    <p>3月より日曜日の営業時間を23:00までに変更いたします。より多くのお客様にご利用いただけるよう努めてまいります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>おいしい酒場</h3>
+                    <p>兵庫県姫路市駅前町123-4 エトワールビル1F</p>
+                    <p>TEL: 079-123-4567</p>
+                    <p>営業時間: 17:00-24:00（日曜日23:00まで）</p>
+                    <p>定休日: 火曜日・第3月曜日</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>リンク</h4>
+                    <ul>
+                        <li><a href="#concept">こだわり</a></li>
+                        <li><a href="#menu">メニュー</a></li>
+                        <li><a href="#gallery">雰囲気</a></li>
+                        <li><a href="#access">アクセス</a></li>
+                        <li><a href="#reservation">予約</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-sns">
+                    <h4>SNS</h4>
+                    <div class="footer-sns-links">
+                        <a href="https://www.instagram.com/oishii_sakaba_himeji/" target="_blank" rel="noopener">Instagram</a>
+                        <a href="https://lin.ee/abcdefg" target="_blank" rel="noopener">LINE</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 おいしい酒場. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
