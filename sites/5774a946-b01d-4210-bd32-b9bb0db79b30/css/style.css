@@ -1,0 +1,596 @@
+:root {
+  --color-base: #F8F9FA;
+  --color-main: #2E7D8A;
+  --color-accent: #E8A547;
+  --color-text: #2C2C2C;
+  --font-heading: 'Noto Sans JP', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+  --radius: 12px;
+  --section-padding: 80px;
+}
+
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* prefers-reduced-motion 対応 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 基本要素 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ボタン共通スタイル（マイクロアニメーション対応） */
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 18px 36px;
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+
+.btn:hover::before {
+  transform: translateY(0);
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--color-main);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 125, 138, 0.3);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-accent:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(232, 165, 71, 0.3);
+}
+
+/* セクション共通 */
+.section {
+  padding: var(--section-padding) 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* アニメーション初期状態（Scroll-triggered Animation） */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* SVGウェーブ */
+.wave {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 60px;
+}
+
+.wave .shape-fill {
+  fill: var(--color-base);
+}
+
+/* ヒーローセクション */
+.hero {
+  background: linear-gradient(135deg, rgba(46, 125, 138, 0.9), rgba(46, 125, 138, 0.7)),
+              url('../images/hero-bg.jpg') center/cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero-content h1 {
+  color: white;
+  margin-bottom: 24px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  opacity: 0.95;
+}
+
+/* 問題提起セクション */
+.problems {
+  background: var(--color-base);
+  text-align: center;
+}
+
+.problems h2 {
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.problem-item {
+  background: white;
+  padding: 40px 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.problem-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.problem-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--color-main);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 特徴セクション */
+.features {
+  background: white;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+  background: var(--color-base);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--color-main);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-content h3 {
+  margin-bottom: 16px;
+  color: var(--color-main);
+}
+
+/* メニュー・料金セクション */
+.menu {
+  background: var(--color-base);
+}
+
+.menu h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.menu-item {
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item h3 {
+  margin-bottom: 20px;
+  color: var(--color-main);
+}
+
+.menu-price {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin: 20px 0;
+}
+
+/* 施術の流れ */
+.flow {
+  background: white;
+}
+
+.flow h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.flow-steps {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: var(--color-base);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.flow-step:hover {
+  transform: translateX(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: var(--color-main);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-right: 30px;
+  flex-shrink: 0;
+}
+
+/* スタッフ紹介 */
+.staff {
+  background: var(--color-base);
+  text-align: center;
+}
+
+.staff h2 {
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.staff-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  padding: 60px 40px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.staff-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+  background: var(--color-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 3rem;
+}
+
+/* お客様の声 */
+.reviews {
+  background: white;
+}
+
+.reviews h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.review-item {
+  background: var(--color-base);
+  padding: 40px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.review-text {
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.reviewer {
+  text-align: right;
+  color: var(--color-main);
+  font-weight: 500;
+}
+
+/* 対応症状 */
+.symptoms {
+  background: var(--color-base);
+}
+
+.symptoms h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.symptom-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.symptom-tag {
+  background: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: 500;
+  color: var(--color-main);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.symptom-tag:hover {
+  background: var(--color-main);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* アクセス */
+.access {
+  background: white;
+}
+
+.access h2 {
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--color-main);
+}
+
+.access-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.access-info {
+  background: var(--color-base);
+  padding: 40px;
+  border-radius: var(--radius);
+}
+
+.info-item {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.info-icon {
+  width: 24px;
+  height: 24px;
+  background: var(--color-main);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.map-container {
+  background: var(--color-base);
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-main);
+}
+
+/* CTA */
+.cta {
+  background: var(--color-main);
+  color: white;
+  text-align: center;
+}
+
+.cta h2 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.phone-btn {
+  background: white;
+  color: var(--color-main);
+  text-decoration: none;
+  padding: 20px 40px;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.phone-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+}
+
+/* フッター */
+.footer {
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* レスポンシブ */
+@media (min-width: 768px) {
+  .problem-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .access-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cta-buttons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1280px) {
+  .problem-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .review-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
