@@ -14,11 +14,21 @@ jobs:
       API_BASE: https://hearing-api.hab-tech.net
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
-      - name: Extract session info
+      - name: Extract session info from pushed file
         id: session
         run: |
-          PROMPT_FILE=$(ls -t prompts/*.md | head -1)
+          # pushされたコミットの差分からプロンプトファイルを特定する
+          PROMPT_FILE=$(git diff --name-only HEAD~1 HEAD -- 'prompts/*.md' | head -1)
+          
+          if [ -z "$PROMPT_FILE" ]; then
+            echo "::error::No prompt file found in the latest commit"
+            exit 1
+          fi
+          
+          echo "Found prompt file: $PROMPT_FILE"
           SESSION_ID=$(basename "$PROMPT_FILE" .md)
           PROMPT_CONTENT=$(cat "$PROMPT_FILE")
           echo "session_id=$SESSION_ID" >> $GITHUB_OUTPUT
@@ -52,7 +62,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
           SESSION_ID="${{ steps.session.outputs.session_id }}"
-          PROMPT_CONTENT="${{ steps.session.outputs.prompt_content }}"
+
+          # プロンプトをファイル経由で渡す（シェル変数展開による破損を防止）
+          cat "${{ steps.session.outputs.prompt_file }}" > /tmp/prompt_input.md
 
           claude -p "
           以下のプロンプトに基づいてWebサイトを生成してください。
@@ -62,7 +74,7 @@ jobs:
           sites/$SESSION_ID/ ディレクトリに出力してください。
 
           【プロンプト内容】
-          $PROMPT_CONTENT
+          $(cat /tmp/prompt_input.md)
           " --max-turns 15 --model claude-sonnet-4-20250514 --dangerously-skip-permissions
 
       - name: Verify generated site
