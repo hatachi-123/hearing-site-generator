@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>まるまるもりもり - 自然の恵みを大切にした温かな飲食店</title>
+    <meta name="description" content="まるまるもりもりは、厳選した国産食材と伝統的な調理法で心温まる料理をお届けする飲食店です。テイクアウト・デリバリーにも対応しています。">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="nav__brand">
+                <h1 class="nav__logo">まるまるもりもり</h1>
+            </div>
+            <ul class="nav__menu">
+                <li><a href="#concept" class="nav__link">コンセプト</a></li>
+                <li><a href="#menu" class="nav__link">メニュー</a></li>
+                <li><a href="#gallery" class="nav__link">店内</a></li>
+                <li><a href="#access" class="nav__link">アクセス</a></li>
+            </ul>
+            <a href="#reservation" class="nav__cta">ご予約</a>
+            <button class="nav__toggle" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero" id="hero">
+        <div class="hero__content">
+            <h1 class="hero__title fade-in">
+                自然の恵みを<br>
+                心を込めてお届け
+            </h1>
+            <p class="hero__subtitle fade-in">
+                北海道産野菜と九州産黒毛和牛を使用した<br>
+                創業32年の伝統の味をご堪能ください
+            </p>
+            <div class="hero__cta fade-in">
+                <a href="#reservation" class="btn btn--primary">今すぐ予約</a>
+                <a href="#menu" class="btn btn--secondary">メニューを見る</a>
+            </div>
+        </div>
+        <div class="hero__image">
+            <div class="hero__placeholder">
+                <p>メイン料理の写真</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンセプト・こだわりセクション -->
+    <section class="concept section" id="concept">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">私たちのこだわり</h2>
+                <p class="section__subtitle fade-in">
+                    1992年の開業以来、変わらず大切にしている3つのこだわり
+                </p>
+            </div>
+            <div class="concept__grid">
+                <div class="concept__item fade-in">
+                    <div class="concept__icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="var(--color-accent)"/>
+                        </svg>
+                    </div>
+                    <h3 class="concept__title">厳選素材</h3>
+                    <p class="concept__text">
+                        毎朝5時から市場で目利きした北海道産野菜と、契約農家直送の九州産黒毛和牛のみを使用。鮮度にこだわり抜いた素材選び。
+                    </p>
+                </div>
+                <div class="concept__item fade-in">
+                    <div class="concept__icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1V3H15V1H17V3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9Z" fill="var(--color-accent)"/>
+                        </svg>
+                    </div>
+                    <h3 class="concept__title">伝統の技</h3>
+                    <p class="concept__text">
+                        創業者から受け継がれた秘伝のタレと、48時間かけて仕込む特製スープ。時間をかけた丁寧な調理で深い味わいを実現。
+                    </p>
+                </div>
+                <div class="concept__item fade-in">
+                    <div class="concept__icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="var(--color-accent)"/>
+                        </svg>
+                    </div>
+                    <h3 class="concept__title">温かな心</h3>
+                    <p class="concept__text">
+                        お客様一人ひとりとの出会いを大切に、笑顔でお迎えする接客。地域に愛され続ける温かな空間づくり。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SVGウェーブ区切り -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V120H1200V0C1200,0,1050,60,600,60S0,0,0,0Z" fill="var(--color-base)"></path>
+        </svg>
+    </div>
+
+    <!-- メニュー・料金セクション -->
+    <section class="menu section" id="menu">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">おすすめメニュー</h2>
+                <p class="section__subtitle fade-in">
+                    自慢の料理をご紹介します
+                </p>
+            </div>
+            <div class="menu__categories">
+                <div class="menu__category">
+                    <h3 class="menu__category-title fade-in">看板メニュー</h3>
+                    <div class="menu__items">
+                        <div class="menu__item menu__item--featured fade-in">
+                            <div class="menu__item-image">
+                                <div class="menu__placeholder">特製和牛ハンバーグの写真</div>
+                            </div>
+                            <div class="menu__item-content">
+                                <h4 class="menu__item-title">特製和牛ハンバーグ</h4>
+                                <p class="menu__item-desc">九州産黒毛和牛100%使用。秘伝のデミグラスソースと北海道産じゃがいもを添えて</p>
+                                <span class="menu__item-price">2,980円</span>
+                            </div>
+                        </div>
+                        <div class="menu__item fade-in">
+                            <div class="menu__item-image">
+                                <div class="menu__placeholder">季節野菜カレーの写真</div>
+                            </div>
+                            <div class="menu__item-content">
+                                <h4 class="menu__item-title">季節野菜カレー</h4>
+                                <p class="menu__item-desc">15種類のスパイスで煮込んだ本格カレー</p>
+                                <span class="menu__item-price">1,680円</span>
+                            </div>
+                        </div>
+                        <div class="menu__item fade-in">
+                            <div class="menu__item-image">
+                                <div class="menu__placeholder">石窯ピザの写真</div>
+                            </div>
+                            <div class="menu__item-content">
+                                <h4 class="menu__item-title">石窯マルゲリータ</h4>
+                                <p class="menu__item-desc">モッツァレラチーズとバジルの王道ピザ</p>
+                                <span class="menu__item-price">1,980円</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu__category">
+                    <h3 class="menu__category-title fade-in">デザート</h3>
+                    <div class="menu__items menu__items--dessert">
+                        <div class="menu__item fade-in">
+                            <div class="menu__item-content">
+                                <h4 class="menu__item-title">手作りチーズケーキ</h4>
+                                <p class="menu__item-desc">北海道産クリームチーズ使用</p>
+                                <span class="menu__item-price">680円</span>
+                            </div>
+                        </div>
+                        <div class="menu__item fade-in">
+                            <div class="menu__item-content">
+                                <h4 class="menu__item-title">季節のフルーツタルト</h4>
+                                <p class="menu__item-desc">旬の国産フルーツをたっぷりと</p>
+                                <span class="menu__item-price">780円</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 店舗の雰囲気・ギャラリーセクション -->
+    <section class="gallery section" id="gallery">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">店内の雰囲気</h2>
+                <p class="section__subtitle fade-in">
+                    温かみのある空間でゆったりとお食事をお楽しみください
+                </p>
+            </div>
+            <div class="gallery__grid">
+                <div class="gallery__item gallery__item--large fade-in">
+                    <div class="gallery__placeholder">メイン店内写真</div>
+                </div>
+                <div class="gallery__item fade-in">
+                    <div class="gallery__placeholder">カウンター席</div>
+                </div>
+                <div class="gallery__item fade-in">
+                    <div class="gallery__placeholder">テーブル席</div>
+                </div>
+                <div class="gallery__item fade-in">
+                    <div class="gallery__placeholder">厨房風景</div>
+                </div>
+                <div class="gallery__item fade-in">
+                    <div class="gallery__placeholder">料理写真1</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スタッフ紹介セクション -->
+    <section class="staff section">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">スタッフ紹介</h2>
+                <p class="section__subtitle fade-in">
+                    心を込めてお料理をお作りするスタッフたちです
+                </p>
+            </div>
+            <div class="staff__grid">
+                <div class="staff__member fade-in">
+                    <div class="staff__photo">
+                        <div class="staff__placeholder">シェフの写真</div>
+                    </div>
+                    <div class="staff__info">
+                        <h3 class="staff__name">田中 健太郎</h3>
+                        <p class="staff__role">オーナーシェフ</p>
+                        <p class="staff__message">
+                            フランス料理修行を経て故郷に戻り、1992年に当店を開業。地元の素材の美味しさを最大限に引き出すことを心がけています。
+                        </p>
+                    </div>
+                </div>
+                <div class="staff__member fade-in">
+                    <div class="staff__photo">
+                        <div class="staff__placeholder">副料理長の写真</div>
+                    </div>
+                    <div class="staff__info">
+                        <h3 class="staff__name">佐藤 美咲</h3>
+                        <p class="staff__role">副料理長</p>
+                        <p class="staff__message">
+                            イタリア料理の技術を活かし、創作料理を担当。お客様に新しい美味しさをお届けしたいと日々研鑽を積んでいます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- お客様の声セクション -->
+    <section class="reviews section">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">お客様の声</h2>
+                <p class="section__subtitle fade-in">
+                    たくさんのお客様にご愛顧いただいております
+                </p>
+            </div>
+            <div class="reviews__grid">
+                <div class="review fade-in">
+                    <div class="review__rating">
+                        <span class="review__stars">★★★★★</span>
+                    </div>
+                    <p class="review__text">
+                        「和牛ハンバーグが絶品でした！肉汁たっぷりで、デミグラスソースとの相性も抜群。また必ず来ます。」
+                    </p>
+                    <div class="review__author">
+                        <span class="review__name">A.S様</span>
+                        <span class="review__age">30代女性</span>
+                    </div>
+                </div>
+                <div class="review fade-in">
+                    <div class="review__rating">
+                        <span class="review__stars">★★★★★</span>
+                    </div>
+                    <p class="review__text">
+                        「家族で利用しました。子供連れでも気遣いしてくださり、料理も美味しくて大満足です。」
+                    </p>
+                    <div class="review__author">
+                        <span class="review__name">T.M様</span>
+                        <span class="review__age">40代男性</span>
+                    </div>
+                </div>
+                <div class="review fade-in">
+                    <div class="review__rating">
+                        <span class="review__stars">★★★★★</span>
+                    </div>
+                    <p class="review__text">
+                        「創業32年の歴史を感じる味わい深い料理でした。また特別な日に伺いたいと思います。」
+                    </p>
+                    <div class="review__author">
+                        <span class="review__name">K.Y様</span>
+                        <span class="review__age">50代女性</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- テイクアウト・デリバリーセクション -->
+    <section class="delivery section">
+        <div class="container">
+            <div class="section__content">
+                <div class="delivery__text fade-in">
+                    <h2 class="section__title">テイクアウト・デリバリー</h2>
+                    <p class="section__subtitle">
+                        ご自宅でも当店の味をお楽しみいただけます
+                    </p>
+                    <div class="delivery__features">
+                        <div class="delivery__feature">
+                            <h3>お電話でのご注文</h3>
+                            <p>平日11:00〜20:00まで受付<br>
+                            お渡し時間：ご注文から45分後</p>
+                        </div>
+                        <div class="delivery__feature">
+                            <h3>デリバリー対応エリア</h3>
+                            <p>店舗から半径3km圏内<br>
+                            配達料：500円（税込）</p>
+                        </div>
+                    </div>
+                    <a href="tel:03-1234-5678" class="btn btn--primary">今すぐ注文</a>
+                </div>
+                <div class="delivery__image fade-in">
+                    <div class="delivery__placeholder">テイクアウト商品の写真</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SVGウェーブ区切り -->
+    <div class="wave-divider wave-divider--reverse">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,120V0H1200V120C1200,120,1050,60,600,60S0,120,0,120Z" fill="var(--color-base)"></path>
+        </svg>
+    </div>
+
+    <!-- アクセス・地図セクション -->
+    <section class="access section" id="access">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">アクセス</h2>
+                <p class="section__subtitle fade-in">
+                    JR中央線「吉祥寺駅」南口より徒歩3分
+                </p>
+            </div>
+            <div class="access__content">
+                <div class="access__info fade-in">
+                    <div class="access__details">
+                        <h3>店舗情報</h3>
+                        <dl class="access__list">
+                            <dt>住所</dt>
+                            <dd>〒180-0004<br>東京都武蔵野市吉祥寺本町2-1-7</dd>
+                            <dt>電話番号</dt>
+                            <dd><a href="tel:0422-12-3456">0422-12-3456</a></dd>
+                            <dt>アクセス</dt>
+                            <dd>JR中央線・京王井の頭線「吉祥寺駅」南口より徒歩3分<br>
+                            中央通り沿い、1階が花屋のビル2階</dd>
+                            <dt>駐車場</dt>
+                            <dd>近隣コインパーキングをご利用ください<br>
+                            （駐車料金サービスあり）</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="access__map fade-in">
+                    <div class="map-placeholder">
+                        <p>Googleマップ（吉祥寺の地図）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 営業時間・定休日セクション -->
+    <section class="hours section">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">営業時間</h2>
+            </div>
+            <div class="hours__content">
+                <div class="hours__schedule fade-in">
+                    <div class="hours__day">
+                        <span class="hours__label">平日</span>
+                        <div class="hours__times">
+                            <span class="hours__time">11:30〜15:00</span>
+                            <span class="hours__time">17:30〜22:00</span>
+                        </div>
+                    </div>
+                    <div class="hours__day">
+                        <span class="hours__label">土日祝</span>
+                        <div class="hours__times">
+                            <span class="hours__time">11:30〜22:00</span>
+                        </div>
+                    </div>
+                    <div class="hours__day hours__day--closed">
+                        <span class="hours__label">定休日</span>
+                        <span class="hours__closed">毎週火曜日（祝日の場合は翌日）</span>
+                    </div>
+                </div>
+                <div class="hours__note fade-in">
+                    <p>※ラストオーダーは閉店30分前とさせていただきます<br>
+                    ※年末年始・お盆期間は営業時間が異なります</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 予約導線セクション -->
+    <section class="reservation section" id="reservation">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">ご予約・お問い合わせ</h2>
+                <p class="section__subtitle fade-in">
+                    お電話またはメールにてお気軽にお問い合わせください
+                </p>
+            </div>
+            <div class="reservation__content">
+                <div class="reservation__methods fade-in">
+                    <div class="reservation__method">
+                        <h3>お電話でのご予約</h3>
+                        <p class="reservation__phone">
+                            <a href="tel:0422-12-3456">0422-12-3456</a>
+                        </p>
+                        <p class="reservation__hours">受付時間：平日11:00〜21:00 / 土日祝11:00〜21:00</p>
+                    </div>
+                    <div class="reservation__method">
+                        <h3>メールでのお問い合わせ</h3>
+                        <p class="reservation__email">
+                            <a href="mailto:ds108081@gmail.com">ds108081@gmail.com</a>
+                        </p>
+                        <p class="reservation__note">※返信まで1〜2営業日いただく場合があります</p>
+                    </div>
+                </div>
+                <form class="reservation__form fade-in" action="https://formspree.io/f/xyyqkald" method="POST">
+                    <div class="form__group">
+                        <label for="name" class="form__label">お名前 <span class="form__required">必須</span></label>
+                        <input type="text" id="name" name="name" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">メールアドレス <span class="form__required">必須</span></label>
+                        <input type="email" id="email" name="email" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="phone" class="form__label">お電話番号</label>
+                        <input type="tel" id="phone" name="phone" class="form__input">
+                    </div>
+                    <div class="form__group">
+                        <label for="date" class="form__label">ご希望日時</label>
+                        <input type="datetime-local" id="date" name="date" class="form__input">
+                    </div>
+                    <div class="form__group">
+                        <label for="guests" class="form__label">人数</label>
+                        <select id="guests" name="guests" class="form__input">
+                            <option value="">人数をお選びください</option>
+                            <option value="1">1名</option>
+                            <option value="2">2名</option>
+                            <option value="3">3名</option>
+                            <option value="4">4名</option>
+                            <option value="5">5名</option>
+                            <option value="6">6名以上</option>
+                        </select>
+                    </div>
+                    <div class="form__group">
+                        <label for="message" class="form__label">お問い合わせ内容</label>
+                        <textarea id="message" name="message" class="form__textarea" rows="5" placeholder="アレルギーやご要望などございましたらお聞かせください"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">送信する</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNSフィード・お知らせセクション -->
+    <section class="social section">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title fade-in">最新情報</h2>
+                <p class="section__subtitle fade-in">
+                    Instagram で日々の料理や店内の様子をお届けしています
+                </p>
+            </div>
+            <div class="social__content">
+                <div class="social__instagram fade-in">
+                    <h3>Instagram</h3>
+                    <div class="instagram__feed">
+                        <div class="instagram__post">
+                            <div class="instagram__placeholder">Instagram投稿1</div>
+                        </div>
+                        <div class="instagram__post">
+                            <div class="instagram__placeholder">Instagram投稿2</div>
+                        </div>
+                        <div class="instagram__post">
+                            <div class="instagram__placeholder">Instagram投稿3</div>
+                        </div>
+                        <div class="instagram__post">
+                            <div class="instagram__placeholder">Instagram投稿4</div>
+                        </div>
+                    </div>
+                    <a href="https://instagram.com/marumarumori" target="_blank" rel="noopener" class="social__follow">
+                        フォローする
+                    </a>
+                </div>
+                <div class="social__news fade-in">
+                    <h3>お知らせ</h3>
+                    <ul class="news__list">
+                        <li class="news__item">
+                            <span class="news__date">2026.03.20</span>
+                            <span class="news__text">春の限定メニュー「桜鯛のカルパッチョ」をスタートしました</span>
+                        </li>
+                        <li class="news__item">
+                            <span class="news__date">2026.03.15</span>
+                            <span class="news__text">4月のイベント「ワインペアリングディナー」のご予約受付中</span>
+                        </li>
+                        <li class="news__item">
+                            <span class="news__date">2026.03.10</span>
+                            <span class="news__text">デリバリー対応エリアを拡大いたしました</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <h3 class="footer__logo">まるまるもりもり</h3>
+                    <div class="footer__details">
+                        <p>〒180-0004 東京都武蔵野市吉祥寺本町2-1-7</p>
+                        <p><a href="tel:0422-12-3456">TEL: 0422-12-3456</a></p>
+                        <p><a href="mailto:ds108081@gmail.com">ds108081@gmail.com</a></p>
+                    </div>
+                    <div class="footer__hours">
+                        <p>平日: 11:30〜15:00 / 17:30〜22:00</p>
+                        <p>土日祝: 11:30〜22:00</p>
+                        <p>定休日: 毎週火曜日</p>
+                    </div>
+                </div>
+                <div class="footer__social">
+                    <h4>Follow Us</h4>
+                    <a href="https://instagram.com/marumarumori" target="_blank" rel="noopener" class="footer__social-link">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 まるまるもりもり. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

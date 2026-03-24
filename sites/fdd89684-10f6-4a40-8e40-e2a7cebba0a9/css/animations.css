@@ -1,0 +1,177 @@
+/* アニメーション用CSS */
+
+/* フェードイン要素の初期状態 */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* アニメーション実行状態 */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 段階的なアニメーション遅延 */
+.fade-in:nth-child(1) { transition-delay: 0s; }
+.fade-in:nth-child(2) { transition-delay: 0.1s; }
+.fade-in:nth-child(3) { transition-delay: 0.2s; }
+.fade-in:nth-child(4) { transition-delay: 0.3s; }
+.fade-in:nth-child(5) { transition-delay: 0.4s; }
+.fade-in:nth-child(6) { transition-delay: 0.5s; }
+
+/* グリッドアイテム用の段階的遅延 */
+.concept__item.fade-in:nth-child(1) { transition-delay: 0.1s; }
+.concept__item.fade-in:nth-child(2) { transition-delay: 0.2s; }
+.concept__item.fade-in:nth-child(3) { transition-delay: 0.3s; }
+
+.menu__item.fade-in:nth-child(1) { transition-delay: 0.1s; }
+.menu__item.fade-in:nth-child(2) { transition-delay: 0.2s; }
+.menu__item.fade-in:nth-child(3) { transition-delay: 0.3s; }
+.menu__item.fade-in:nth-child(4) { transition-delay: 0.4s; }
+
+.gallery__item.fade-in:nth-child(1) { transition-delay: 0.1s; }
+.gallery__item.fade-in:nth-child(2) { transition-delay: 0.2s; }
+.gallery__item.fade-in:nth-child(3) { transition-delay: 0.3s; }
+.gallery__item.fade-in:nth-child(4) { transition-delay: 0.4s; }
+.gallery__item.fade-in:nth-child(5) { transition-delay: 0.5s; }
+
+.review.fade-in:nth-child(1) { transition-delay: 0.1s; }
+.review.fade-in:nth-child(2) { transition-delay: 0.2s; }
+.review.fade-in:nth-child(3) { transition-delay: 0.3s; }
+
+/* ホバーアニメーション */
+.concept__item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu__item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ボタンのホバーアニメーション */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transition: all 0.2s ease;
+}
+
+/* ナビゲーションアニメーション */
+.nav__link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* フォーム要素のフォーカスアニメーション */
+.form__input,
+.form__textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+}
+
+/* スクロール時のヘッダーアニメーション */
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 20px rgba(139, 69, 19, 0.1);
+}
+
+/* ローディングアニメーション */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__content > * {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.hero__title {
+  animation-delay: 0.2s;
+}
+
+.hero__subtitle {
+  animation-delay: 0.4s;
+}
+
+.hero__cta {
+  animation-delay: 0.6s;
+}
+
+/* パララックス効果用 */
+.parallax-element {
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+}
+
+/* スムーススクロールのためのオフセット調整 */
+.section {
+  scroll-margin-top: 80px;
+}
+
+/* アクセシビリティ：アニメーション無効化設定 */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .concept__item,
+  .menu__item,
+  .review,
+  .btn,
+  .nav__link,
+  .form__input,
+  .form__textarea {
+    transition: none;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero__content > * {
+    animation: none;
+  }
+}
+
+/* モバイル用の軽量アニメーション */
+@media (max-width: 767px) {
+  .fade-in {
+    transition-duration: 0.4s;
+  }
+
+  .concept__item:hover,
+  .menu__item:hover,
+  .review:hover {
+    transform: none;
+  }
+}
