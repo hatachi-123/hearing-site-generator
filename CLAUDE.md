@@ -1,8 +1,5 @@
 # Web制作 共通ルール
 
-## 必読ファイル
-- **WEB_DESIGN_TECHNIQUES.md** — デザイン技法リファレンス。プロンプトに `TECH:①③⑤` のようなIDが含まれている場合、このファイルの技法カタログに従って実装すること。
-
 ## 技術スタック
 - HTML / CSS / JavaScript（フレームワークなし）
 - フォント：Google Fonts
