@@ -1,0 +1,334 @@
+/* Animations.css - CLAUDE.md 共通ルール準拠 */
+/* アニメーション：opacity 0→1・translateY 40px→0・duration 0.6s */
+
+/* Initial States */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.fade-in-up.delay-400 {
+  transition-delay: 0.4s;
+}
+
+.fade-in-up.delay-600 {
+  transition-delay: 0.6s;
+}
+
+.fade-in-up.delay-800 {
+  transition-delay: 0.8s;
+}
+
+/* Active States */
+.fade-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade in from left */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade in from right */
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale fade in */
+.fade-in-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-scale.animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger animations for multiple elements */
+.stagger-delay-1 { transition-delay: 0.1s; }
+.stagger-delay-2 { transition-delay: 0.2s; }
+.stagger-delay-3 { transition-delay: 0.3s; }
+.stagger-delay-4 { transition-delay: 0.4s; }
+.stagger-delay-5 { transition-delay: 0.5s; }
+.stagger-delay-6 { transition-delay: 0.6s; }
+
+/* Slide in animations */
+.slide-in-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image reveal animations */
+.reveal-mask {
+  position: relative;
+  overflow: hidden;
+}
+
+.reveal-mask img {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-mask.animate img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-main);
+  transform: translateX(-100%);
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1;
+}
+
+.reveal-mask.animate::after {
+  transform: translateX(100%);
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.counter {
+  animation: countUp 1s ease-out;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.3) 50%,
+    rgba(212, 175, 55, 0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Button hover animations */
+.btn-hover-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-hover-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(193, 155, 42, 0.2);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.btn-hover-slide:hover::before {
+  left: 0;
+}
+
+/* Card hover animations */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26, 26, 26, 0.1);
+}
+
+/* Text reveal animations */
+.text-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.text-reveal.animate span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progressive text reveal */
+.text-reveal.animate span:nth-child(1) { transition-delay: 0.1s; }
+.text-reveal.animate span:nth-child(2) { transition-delay: 0.2s; }
+.text-reveal.animate span:nth-child(3) { transition-delay: 0.3s; }
+.text-reveal.animate span:nth-child(4) { transition-delay: 0.4s; }
+.text-reveal.animate span:nth-child(5) { transition-delay: 0.5s; }
+
+/* Parallax elements */
+.parallax-element {
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* Smooth scrolling anchor */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Intersection observer trigger class */
+.io-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.io-animate.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance animation */
+.hero-entrance {
+  animation: heroFadeIn 1.2s ease-out;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation slide in */
+.nav-slide {
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+
+.nav-slide.animate {
+  transform: translateY(0);
+}
+
+/* Floating elements */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Pulse animation for CTAs */
+.pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.8); }
+}
+
+/* Page transition effects */
+.page-transition {
+  opacity: 0;
+  animation: pageTransition 0.5s ease-out forwards;
+}
+
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile-specific animations */
+@media (max-width: 767px) {
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right {
+    transform: translateY(20px);
+  }
+
+  .slide-in-up {
+    transform: translateY(30px);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .fade-in-scale,
+  .slide-in-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .fade-in-up,
+  .fade-in-left,
+  .fade-in-right,
+  .fade-in-scale,
+  .slide-in-up {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
