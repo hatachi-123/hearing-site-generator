@@ -1,0 +1,410 @@
+/* Animation Base */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for grids */
+.commitment-grid .commitment-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.commitment-grid .commitment-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.commitment-grid .commitment-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.commitment-grid .commitment-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.seasonal-products .product-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.seasonal-products .product-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.seasonal-products .product-card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.reviews-grid .review-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.reviews-grid .review-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.reviews-grid .review-card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.direct-features .direct-feature:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.direct-features .direct-feature:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.direct-features .direct-feature:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.gallery-grid .gallery-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.gallery-grid .gallery-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.gallery-grid .gallery-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.gallery-grid .gallery-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* Hero Animation */
+.hero-content .fade-in {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.hero-content .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Seasonal Tab Animation */
+.seasonal-panel {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease;
+}
+
+.seasonal-panel.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Button Hover Animations */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Floating Animation for Icons */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.commitment-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+.commitment-item:nth-child(1) .commitment-icon {
+  animation-delay: 0s;
+}
+
+.commitment-item:nth-child(2) .commitment-icon {
+  animation-delay: 0.5s;
+}
+
+.commitment-item:nth-child(3) .commitment-icon {
+  animation-delay: 1s;
+}
+
+.commitment-item:nth-child(4) .commitment-icon {
+  animation-delay: 1.5s;
+}
+
+/* Pulse Animation for CTA */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+.phone-link:hover {
+  animation: pulse 1.5s infinite;
+}
+
+/* Form Focus Animation */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  animation: focusGlow 0.3s ease;
+}
+
+@keyframes focusGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  }
+}
+
+/* Seasonal Button Animation */
+.seasonal-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.seasonal-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.seasonal-btn:hover::after {
+  left: 100%;
+}
+
+/* Product Card Hover Animation */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  transition: transform 0.3s ease;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(255, 107, 53, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-info {
+  position: relative;
+  z-index: 2;
+}
+
+/* Review Card Animation */
+.review-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(76, 175, 80, 0.05), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.review-card:hover::before {
+  animation: shimmer 1s ease;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Gallery Image Hover Effect */
+.gallery-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.8), rgba(255, 107, 53, 0.8));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-item:hover .gallery-image::after {
+  opacity: 0.1;
+}
+
+/* Number Counter Animation */
+.feature-number {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.8s ease;
+}
+
+.direct-feature:hover .feature-number::before {
+  left: 100%;
+}
+
+/* Wave Animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+}
+
+.wave-divider svg {
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* Loading Animation for Form Submit */
+.form-submit {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-submit.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Smooth Scroll Animation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .seasonal-panel,
+  .btn,
+  .product-image,
+  .gallery-image {
+    transition: none;
+  }
+
+  .commitment-icon,
+  .phone-link,
+  .wave-divider svg {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid var(--color-main);
+  }
+
+  .btn-secondary {
+    background: var(--color-base);
+  }
+
+  .product-card,
+  .review-card,
+  .commitment-item {
+    border: 1px solid var(--color-text);
+  }
+}
