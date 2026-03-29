@@ -1,0 +1,380 @@
+/* アニメーション用CSS */
+
+/* 共通アニメーションクラス */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* セクションアニメーション */
+.hero-content {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.hero-image {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.8s ease-out 0.5s forwards;
+}
+
+/* 個別要素のアニメーション */
+.section-header {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.section-header.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.about-content > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.about-content > *.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.about-content .about-text.animate {
+  transition-delay: 0.2s;
+}
+
+.about-content .about-image.animate {
+  transition-delay: 0.4s;
+}
+
+/* 統計情報のアニメーション */
+.stat-item {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.stat-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.stat-item:nth-child(1).animate {
+  transition-delay: 0.1s;
+}
+
+.stat-item:nth-child(2).animate {
+  transition-delay: 0.3s;
+}
+
+.stat-item:nth-child(3).animate {
+  transition-delay: 0.5s;
+}
+
+/* 商品カードのアニメーション */
+.product-card {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.product-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.product-card:nth-child(1).animate {
+  transition-delay: 0.1s;
+}
+
+.product-card:nth-child(2).animate {
+  transition-delay: 0.2s;
+}
+
+.product-card:nth-child(3).animate {
+  transition-delay: 0.3s;
+}
+
+.product-card:nth-child(4).animate {
+  transition-delay: 0.4s;
+}
+
+.product-card:nth-child(5).animate {
+  transition-delay: 0.5s;
+}
+
+/* こだわりポイントのアニメーション */
+.point-item {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.point-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.point-item:nth-child(1).animate {
+  transition-delay: 0.1s;
+}
+
+.point-item:nth-child(2).animate {
+  transition-delay: 0.3s;
+}
+
+.point-item:nth-child(3).animate {
+  transition-delay: 0.5s;
+}
+
+/* お客様の声のアニメーション */
+.testimonial-card {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.testimonial-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.testimonial-card:nth-child(1).animate {
+  transition-delay: 0.1s;
+}
+
+.testimonial-card:nth-child(2).animate {
+  transition-delay: 0.3s;
+}
+
+.testimonial-card:nth-child(3).animate {
+  transition-delay: 0.5s;
+}
+
+/* 店主紹介のアニメーション */
+.owner-content > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.owner-content > *.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.owner-content .owner-image.animate {
+  transition-delay: 0.2s;
+}
+
+.owner-content .owner-text.animate {
+  transition-delay: 0.4s;
+}
+
+/* 店舗情報のアニメーション */
+.info-item {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.info-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.info-item:nth-child(1).animate {
+  transition-delay: 0.1s;
+}
+
+.info-item:nth-child(2).animate {
+  transition-delay: 0.2s;
+}
+
+.info-item:nth-child(3).animate {
+  transition-delay: 0.3s;
+}
+
+.info-item:nth-child(4).animate {
+  transition-delay: 0.4s;
+}
+
+.info-item:nth-child(5).animate {
+  transition-delay: 0.5s;
+}
+
+/* 問い合わせ情報のアニメーション */
+.contact-content > * {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.contact-content > *.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease-out;
+}
+
+.phone-contact.animate {
+  transition-delay: 0.1s;
+}
+
+.visit-info.animate {
+  transition-delay: 0.3s;
+}
+
+.special-services.animate {
+  transition-delay: 0.5s;
+}
+
+/* キーフレーム定義 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ホバーアニメーション */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.cta-button,
+.hero-cta {
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover,
+.hero-cta:hover {
+  transform: translateY(-2px);
+}
+
+.phone-large a {
+  transition: all 0.3s ease;
+}
+
+.phone-large a:hover {
+  transform: scale(1.05);
+}
+
+/* 数字カウンターアニメーション（JavaScriptで制御） */
+.stat-number {
+  transition: all 0.6s ease-out;
+}
+
+/* パルス効果 */
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(210, 105, 30, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(210, 105, 30, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(210, 105, 30, 0);
+  }
+}
+
+/* スクロール時のパララックス効果準備 */
+.parallax-element {
+  transition: transform 0.1s ease-out;
+}
+
+/* ローディング状態 */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* アニメーション遅延リセット（モバイル） */
+@media (max-width: 768px) {
+  .stat-item:nth-child(1).animate,
+  .stat-item:nth-child(2).animate,
+  .stat-item:nth-child(3).animate,
+  .product-card:nth-child(1).animate,
+  .product-card:nth-child(2).animate,
+  .product-card:nth-child(3).animate,
+  .product-card:nth-child(4).animate,
+  .product-card:nth-child(5).animate,
+  .point-item:nth-child(1).animate,
+  .point-item:nth-child(2).animate,
+  .point-item:nth-child(3).animate,
+  .testimonial-card:nth-child(1).animate,
+  .testimonial-card:nth-child(2).animate,
+  .testimonial-card:nth-child(3).animate,
+  .info-item:nth-child(1).animate,
+  .info-item:nth-child(2).animate,
+  .info-item:nth-child(3).animate,
+  .info-item:nth-child(4).animate,
+  .info-item:nth-child(5).animate {
+    transition-delay: 0.1s;
+  }
+}
+
+/* 低速環境での配慮 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 印刷時のアニメーション無効化 */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,15 @@
+# 画像ファイル格納ディレクトリ
+
+このディレクトリには以下の画像を配置予定：
+- ヒーロー画像（店舗外観または新鮮野菜の陳列）: 1920×1080
+- 商品写真（季節野菜、果物）: 800×600
+- 店主写真: 400×400（丸型）
+- 店内雰囲気写真: 800×600
+- 農家との関係性写真: 600×400
+
+推奨画像キーワード（Unsplash等から取得）:
+- "fresh vegetables shop"
+- "japanese grocery store"
+- "organic produce market"
+- "local farmer vegetables"
+- "traditional vegetable shop japan"
